@@ -55,7 +55,13 @@ export default {
           'accent-foreground': 'var(--sidebar-accent-foreground)',
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)'
-        }
+        },
+
+        info: 'var(--info)',
+        warning: 'var(--warning)',
+        success: 'var(--success)',
+        error: 'var(--error)',
+        disabled: 'var(--disabled)'
       }
     },
     colors: {
