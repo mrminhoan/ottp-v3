@@ -1,0 +1,5 @@
+import { ImageCdn } from '../custom-image/image-cdn'
+
+export const SplashScreen = () => {
+  return <ImageCdn className={'center-center'} src={'/images/logo.png'} alt={'splash logo'} width={150} height={150} />
+}

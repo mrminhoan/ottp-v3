@@ -1,9 +1,8 @@
+import { renderRouter } from './routes/get-routes'
+import routes from './routes/init-routes'
+
 function App() {
-  return (
-    <>
-      <p className='text-bermuda'>text</p>
-    </>
-  )
+  return <>{renderRouter(routes)}</>
 }
 
 export default App
