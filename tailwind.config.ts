@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import animate from 'tailwindcss-animate'
+
 export default {
   darkMode: ['class'],
   content: ['./src/**/*.{html,js,ts,tsx}'],
@@ -54,22 +55,21 @@ export default {
           'accent-foreground': 'var(--sidebar-accent-foreground)',
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)'
-        },
+        }
       }
     },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'white': '#ffffff',
-      'purple': '#3f3cbb',
-      'midnight': '#121063',
-      'metal': '#565584',
-      'tahiti': '#3ab7bf',
-      'silver': '#ecebff',
+      white: '#ffffff',
+      purple: '#3f3cbb',
+      midnight: '#121063',
+      metal: '#565584',
+      tahiti: '#3ab7bf',
+      silver: '#ecebff',
       'bubble-gum': '#ff77e9',
-      'bermuda': '#78dcca',
-    },
+      bermuda: '#78dcca'
+    }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [animate]
 }
-
