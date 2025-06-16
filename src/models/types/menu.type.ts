@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 export type RouteMeta = {
   title: string
-  icon?: ReactNode
+  icon?: ComponentType<any>
   hidden?: boolean
 }
 
@@ -10,7 +10,7 @@ export type AppRoute = {
   path: string
   element?: ReactNode
   children?: Partial<AppRoute>[]
-  meta?: Partial<RouteMeta>
+  RouteMeta
   to?: string
 }
 
@@ -19,9 +19,5 @@ export type TMenu = {
   element?: React.ReactNode
   children?: TMenu[]
   to?: string
-  meta?: {
-    title: string
-    icon?: React.ReactNode
-    hidden?: boolean
-  }
+  meta?: RouteMeta
 }

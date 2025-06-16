@@ -38,11 +38,11 @@ const routes: Partial<TMenu>[] = [
       {
         path: '',
         element: <DashboardLoadCore />,
-        meta: { title: 'Dashboard', icon: <Home /> }
+        meta: { title: 'Dashboard', icon: Home }
       },
       {
         path: PATHS.SHOP.ROOT,
-        meta: { title: 'Shop', icon: <Store /> },
+        meta: { title: 'Shop', icon: Store },
         children: [
           {
             path: '',
@@ -69,7 +69,7 @@ const routes: Partial<TMenu>[] = [
       {
         path: PATHS.SELLER.ROOT,
         to: PATHS.SELLER.LIST,
-        meta: { title: 'Seller', icon: <Users /> },
+        meta: { title: 'Seller', icon: Users },
         children: [
           {
             path: PATHS.SELLER.LIST,

@@ -3,6 +3,7 @@ import { StrictMode } from 'react'
 import { SplashScreen } from '@/components/ui/custom/splash-screen/splash-screen'
 import { BrowserRouter } from 'react-router-dom'
 import '@/styles/global.css'
+import SidebarWrapper from '@/components/ui/layout/sidebar/sidebar-wrapper'
 
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { AppConfigProvider } from '@/components/theme/theme-provider'
@@ -42,7 +43,9 @@ export const WrapperConfig = async (props: IProps) => {
   setTimeout(() => {
     root.render(
       <StrictMode>
-        <BrowserRouter>{children}</BrowserRouter>
+        <BrowserRouter>
+          <SidebarWrapper>{children}</SidebarWrapper>
+        </BrowserRouter>
       </StrictMode>
     )
   }, 500)
