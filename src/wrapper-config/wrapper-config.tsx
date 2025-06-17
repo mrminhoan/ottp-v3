@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { loadI18n } from '@/i18n'
 import { AppConfigProvider } from '@/context/app-config-provider'
 import { UserStore } from '@/service/pages/users/store'
+import { Toaster } from '@/components/ui/sonner'
 
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { AppConfigProvider } from '@/components/theme/theme-provider'
@@ -50,6 +51,7 @@ export const WrapperConfig = async (props: IProps) => {
           <BrowserRouter>
             <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
               <SidebarWrapper>{children}</SidebarWrapper>
+              <Toaster />
             </AppConfigProvider>
           </BrowserRouter>
         </QueryClientProvider>
