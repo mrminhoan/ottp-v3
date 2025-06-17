@@ -27,6 +27,10 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unsafe-function-type': 'warn',
+      '@typescript-eslint/no-wrapper-object-types': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-unused-vars': 'warn',
       'prettier/prettier': [
         'warn',
         {

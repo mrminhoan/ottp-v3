@@ -27,6 +27,7 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       iconRight,
       children,
       disabled,
+      type = 'button',
       classNameContent,
       ...props
     },
@@ -42,8 +43,9 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       <Comp
         ref={ref}
         data-slot='button'
-        className={cn(buttonVariants({ variant, size }), className, 'relative rounded-md')}
+        className={cn(buttonVariants({ variant, size }), className, 'relative rounded-sm')}
         disabled={isDisabled}
+        type={type}
         {...props}
       >
         {loading && (
@@ -52,17 +54,17 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
           </div>
         )}
 
-        <div className={cn('flex items-center justify-center gap-2', loading && 'invisible')}>
+        <div className={cn('flex items-center justify-center  gap-2 w-full', loading && 'invisible')}>
           {LeftIcon && (
-            <span className='inline-flex items-center justify-center'>
+            <span className='inline-flex items-center justify-center w-full'>
               <LeftIcon size={16} className='align-middle' />
             </span>
           )}
 
-          {children ? <span className={cn('inline-flex items-center', classNameContent)}>{children}</span> : null}
+          {children ? <span className={cn('', classNameContent)}>{children}</span> : null}
 
           {RightIcon && (
-            <span className='inline-flex items-center justify-center'>
+            <span className='inline-flex items-center justify-center w-full'>
               <RightIcon size={16} className='align-middle' />
             </span>
           )}

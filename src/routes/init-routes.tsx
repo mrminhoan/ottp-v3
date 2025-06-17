@@ -1,8 +1,9 @@
 import { PATHS } from '@/constants'
 import { LoadedAleCore } from '@/lib/loaded-ale-core'
-import { Home, Store, Users } from 'lucide-react'
+import { Store, Users } from 'lucide-react'
 import { TMenu } from '@/models/types'
 import { ErrorBoundary } from 'react-error-boundary'
+import { GuardProtectRoute } from './protected-route/guard-protect'
 
 const MainPageLoadCore = LoadedAleCore(() => import('@/pages/main/main-page'))
 const DashboardLoadCore = LoadedAleCore(() => import('@/pages/dashboard/dashboard'))
@@ -37,53 +38,59 @@ const routes: Partial<TMenu>[] = [
     children: [
       {
         path: '',
-        element: <DashboardLoadCore />,
-        meta: { title: 'Dashboard', icon: <Home /> }
+        element: <GuardProtectRoute component={<DashboardLoadCore />} />
+        // meta: { title: 'Dashboard', icon: Home }
       },
       {
         path: PATHS.SHOP.ROOT,
-        meta: { title: 'Shop', icon: <Store /> },
+        meta: { title: 'Shop', icon: Store },
+        // to: PATHS.SHOP.LIST,
         children: [
           {
             path: '',
             to: PATHS.SHOP.LIST,
-            element: <ShopListLoadCore />
+            element: <GuardProtectRoute component={<ShopListLoadCore />} />
           },
           {
             path: PATHS.SHOP.LIST,
-            element: <ShopListLoadCore />,
+            element: <GuardProtectRoute component={<ShopListLoadCore />} />,
             meta: { title: 'Shop List' }
           },
           {
             path: PATHS.SHOP.DEPOSIT,
-            element: <ShopDepositLoadCore />,
+            element: <GuardProtectRoute component={<ShopDepositLoadCore />} />,
             meta: { title: 'Shop Deposit' }
           },
           {
             path: PATHS.SHOP.WITHDRAWAL,
-            element: <ShopWithdrawalLoadCore />,
+            element: <GuardProtectRoute component={<ShopWithdrawalLoadCore />} />,
             meta: { title: 'Shop Withdrawal' }
           }
         ]
       },
       {
         path: PATHS.SELLER.ROOT,
-        to: PATHS.SELLER.LIST,
-        meta: { title: 'Seller', icon: <Users /> },
+        // to: PATHS.SELLER.LIST,
+        meta: { title: 'Seller', icon: Users },
         children: [
           {
+            path: '',
+            to: PATHS.SELLER.LIST,
+            element: <GuardProtectRoute component={<SellerListLoadCore />} />
+          },
+          {
             path: PATHS.SELLER.LIST,
-            element: <SellerListLoadCore />,
+            element: <GuardProtectRoute component={<SellerListLoadCore />} />,
             meta: { title: 'Seller List' }
           },
           {
             path: PATHS.SELLER.DEPOSIT,
-            element: <SellerDepositLoadCore />,
+            element: <GuardProtectRoute component={<SellerDepositLoadCore />} />,
             meta: { title: 'Seller Deposit' }
           },
           {
             path: PATHS.SELLER.WITHDRAWAL,
-            element: <SellerWithdrawalLoadCore />,
+            element: <GuardProtectRoute component={<SellerWithdrawalLoadCore />} />,
             meta: { title: 'Seller Withdrawal' }
           }
         ]

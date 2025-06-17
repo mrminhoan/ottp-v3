@@ -6,6 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        white: '#ffffff',
+        black: '#000000',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: {
@@ -40,11 +42,11 @@ export default {
         input: 'var(--input)',
         ring: 'var(--ring)',
         chart: {
-          1: 'var(--chart-1)',
-          2: 'var(--chart-2)',
-          3: 'var(--chart-3)',
-          4: 'var(--chart-4)',
-          5: 'var(--chart-5)'
+          '1': 'var(--chart-1)',
+          '2': 'var(--chart-2)',
+          '3': 'var(--chart-3)',
+          '4': 'var(--chart-4)',
+          '5': 'var(--chart-5)'
         },
         sidebar: {
           DEFAULT: 'var(--sidebar)',
@@ -56,7 +58,6 @@ export default {
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)'
         },
-
         info: 'var(--info)',
         warning: 'var(--warning)',
         success: 'var(--success)',
@@ -64,18 +65,7 @@ export default {
         disabled: 'var(--disabled)'
       }
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      white: '#ffffff',
-      purple: '#3f3cbb',
-      midnight: '#121063',
-      metal: '#565584',
-      tahiti: '#3ab7bf',
-      silver: '#ecebff',
-      'bubble-gum': '#ff77e9',
-      bermuda: '#78dcca'
-    }
+    colors: {}
   },
   plugins: [animate]
 }
