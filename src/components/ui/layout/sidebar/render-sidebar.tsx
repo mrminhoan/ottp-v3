@@ -33,7 +33,9 @@ export function RenderSidebar({ routes }: IProps) {
 
   const renderMenuItem = (item: Partial<TMenu>) => {
     const url = item.to || item.path
-    const title = item.meta?.title || 'Untitled'
+    const title = item.meta?.title
+    if (!title) return null
+
     const isActive = isActiveLink(url)
 
     return (
@@ -48,7 +50,8 @@ export function RenderSidebar({ routes }: IProps) {
   }
 
   const renderMenuGroup = (route: Partial<TMenu>) => {
-    const title = route.meta?.title || 'Untitled'
+    const title = route.meta?.title
+    if (!title) return null
     const Icon = route.meta?.icon as any
     const children = route.children?.filter((child) => child.path !== '') || []
     const isParentActive = isActiveParent(children)
@@ -79,8 +82,10 @@ export function RenderSidebar({ routes }: IProps) {
   return (
     <SidebarMenu>
       {filteredRoutes.map((route) => {
+        const title = route.meta?.title
+        if (!title) return null
+
         if (route.path === '' && route.children?.length) {
-          const title = route.meta?.title || 'Untitled'
           return renderMenuGroup({ ...route, path: `__group__-${title}` })
         }
 
@@ -93,11 +98,11 @@ export function RenderSidebar({ routes }: IProps) {
           <SidebarMenuItem key={route.path}>
             <SidebarMenuButton
               asChild
-              tooltip={route.meta?.title}
+              tooltip={title}
               className={cn('transition-all duration-200 rounded-md', isActive && 'bg-primary')}
             >
               <Link to={route.to || route.path}>
-                <span>{route.meta?.title || 'Untitled'}</span>
+                <span>{title}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

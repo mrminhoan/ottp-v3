@@ -4,6 +4,10 @@ import { SplashScreen } from '@/components/ui/custom/splash-screen/splash-screen
 import { BrowserRouter } from 'react-router-dom'
 import '@/styles/global.css'
 import SidebarWrapper from '@/components/ui/layout/sidebar/sidebar-wrapper'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { loadI18n } from '@/i18n'
+import { AppConfigProvider } from '@/context/app-config-provider'
+import { UserStore } from '@/service/pages/users/store'
 
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { AppConfigProvider } from '@/components/theme/theme-provider'
@@ -22,16 +26,15 @@ interface IProps extends React.PropsWithChildren {
 }
 
 export const WrapperConfig = async (props: IProps) => {
-  // await loadI18n()
-  // const queryClient = new QueryClient()
+  await loadI18n()
+  const queryClient = new QueryClient()
 
-  // const storedTimezone = UserStore.getTimeZone()
-  // if (!storedTimezone) {
-  //     UserStore.setTimeZone('+9')
-  // }
+  const storedTimezone = UserStore.getTimeZone()
+  if (!storedTimezone) {
+    UserStore.setTimeZone('+9')
+  }
 
   const { id = 'root', children } = props
-
   const root = createRoot(document.getElementById(id)!)
 
   root.render(
@@ -43,9 +46,13 @@ export const WrapperConfig = async (props: IProps) => {
   setTimeout(() => {
     root.render(
       <StrictMode>
-        <BrowserRouter>
-          <SidebarWrapper>{children}</SidebarWrapper>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
+              <SidebarWrapper>{children}</SidebarWrapper>
+            </AppConfigProvider>
+          </BrowserRouter>
+        </QueryClientProvider>
       </StrictMode>
     )
   }, 500)

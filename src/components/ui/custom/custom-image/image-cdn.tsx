@@ -6,6 +6,7 @@ const CDN_PREFIX = 'https://cdn.example.com/'
 
 interface IProps extends ComponentProps<'img'> {
   wrapClassName?: string
+  imageClassName?: string
   isCdn?: boolean
   fallback?: ReactNode
 }
@@ -13,6 +14,7 @@ interface IProps extends ComponentProps<'img'> {
 export const ImageCdn: FC<IProps> = ({
   src = '',
   wrapClassName,
+  imageClassName,
   isCdn = false,
   fallback = <div>Image not found</div>,
   ...restProps
@@ -36,7 +38,7 @@ export const ImageCdn: FC<IProps> = ({
   }
 
   return (
-    <div className={cn('flex items-center justify-center w-screen h-screen', wrapClassName)}>
+    <div className={cn('', wrapClassName)}>
       {!loaded && !error && <CustomSpin />}
       {!error ? (
         <img
@@ -44,7 +46,7 @@ export const ImageCdn: FC<IProps> = ({
           src={getFinalSrc()}
           onLoad={handleLoad}
           onError={handleError}
-          className={!loaded ? 'hidden' : ''}
+          className={cn(!loaded ? 'hidden' : '', imageClassName)}
         />
       ) : (
         fallback
