@@ -10,6 +10,12 @@ export default {
         black: '#000000',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+
+        surface: {
+          DEFAULT: 'var(--surface)',
+          muted: 'var(--surface-muted)'
+        },
+
         card: {
           DEFAULT: 'var(--card)',
           foreground: 'var(--card-foreground)'
@@ -63,6 +69,18 @@ export default {
         success: 'var(--success)',
         error: 'var(--error)',
         disabled: 'var(--disabled)'
+      },
+      backgroundImage: {
+        'info-gradient': 'var(--info-gradient)',
+        'warning-gradient': 'var(--warning-gradient)',
+        'success-gradient': 'var(--success-gradient)',
+        'error-gradient': 'var(--error-gradient)',
+        user: 'var(--color-user-gradient)',
+        seller: 'var(--color-seller-gradient)',
+        shop: 'var(--color-shop-gradient)',
+        deposit: 'var(--color-deposit-gradient)',
+        withdrawal: 'var(--color-withdrawal-gradient)',
+        tether: 'var(--color-tether-gradient)'
       }
     },
     colors: {}

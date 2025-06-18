@@ -63,7 +63,7 @@ function CustomFormItem(props: TFormItemProps) {
               </Tooltip>
             </TooltipProvider>
             <FormControl>
-              <>
+              <div>
                 {Children.map(children, (child) =>
                   isValidElement(child)
                     ? cloneElement(child as React.ReactElement<any>, {
@@ -86,7 +86,7 @@ function CustomFormItem(props: TFormItemProps) {
                       })
                     : child
                 )}
-              </>
+              </div>
             </FormControl>
           </FormItem>
         )

@@ -5,7 +5,7 @@ import { UserProfileModel } from '@/models/class'
 export const UserStore = {
   getProfile(): UserProfileModel | null {
     const raw = UserStorage.get()
-    return raw?.[STORAGE_KEY.USER_PROFILE] || null
+    return raw || null
   },
 
   setProfile(user: UserProfileModel) {
@@ -49,12 +49,13 @@ export const UserStore = {
   },
 
   setCredentials(data: Partial<Record<string, any>>) {
+    if (!data) return
     const profile = UserStorage.get()
     UserStorage.set({
       ...profile,
       [STORAGE_KEY.ACCESS_TOKEN]: data[STORAGE_KEY.ACCESS_TOKEN] || profile[STORAGE_KEY.ACCESS_TOKEN],
       [STORAGE_KEY.REFRESH_TOKEN]: data[STORAGE_KEY.REFRESH_TOKEN] || profile[STORAGE_KEY.REFRESH_TOKEN],
-      [STORAGE_KEY.USER_PROFILE]: data[STORAGE_KEY.USER_PROFILE] || profile[STORAGE_KEY.USER_PROFILE]
+      [STORAGE_KEY.SHOP_ID]: data[STORAGE_KEY.SHOP_ID] || profile[STORAGE_KEY.SHOP_ID]
     })
   },
 

@@ -4,6 +4,7 @@ import { Store, Users } from 'lucide-react'
 import { TMenu } from '@/models/types'
 import { ErrorBoundary } from 'react-error-boundary'
 import { GuardProtectRoute } from './protected-route/guard-protect'
+import { GuardPublicRoute } from './public-route/guard-public'
 
 const MainPageLoadCore = LoadedAleCore(() => import('@/pages/main/main-page'))
 const DashboardLoadCore = LoadedAleCore(() => import('@/pages/dashboard/dashboard'))
@@ -105,7 +106,7 @@ const routes: Partial<TMenu>[] = [
     path: PATHS.LOGIN,
     element: (
       <ErrorBoundary fallback={<ErrorPageLoadCore />}>
-        <LoginLoadCore />
+        <GuardPublicRoute component={<LoginLoadCore />} />
       </ErrorBoundary>
     )
   },

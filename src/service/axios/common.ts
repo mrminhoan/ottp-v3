@@ -7,9 +7,11 @@ import { IResponse } from '@/models/interface/api-response-model'
 import { HeaderService } from './headers'
 import { LoginService } from '../pages/login/login.service'
 import { UserStore } from '../pages/users/store'
+import { socketService } from '../socket/socket.service'
+import { SOCKET_ID } from '@/constants/socket'
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL_PRODUCTION,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 300000,
   headers: {
     'Content-Type': 'application/json'
@@ -162,7 +164,7 @@ axiosInstance.interceptors.response.use(
 
             const accessToken = res?.data?.data?.access_token
 
-            // socketService.connect(accessToken)
+            socketService.connect(SOCKET_ID.NOTIFICATION, accessToken, import.meta.env.VITE_SOCKET_URL)
 
             isRetry = false
             onAccessTokenFetched(accessToken)

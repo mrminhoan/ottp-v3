@@ -8,11 +8,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '../../sidebar'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../collapsible'
 import { ChevronRight } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { TMenu } from '@/models/types'
 import { cn } from '@/lib/utils'
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel } from '@/components/animate-ui/headless/accordion'
+import React from 'react'
 
 interface IProps {
   routes: Partial<TMenu>[]
@@ -57,23 +58,32 @@ export function RenderSidebar({ routes }: IProps) {
     const isParentActive = isActiveParent(children)
 
     return (
-      <Collapsible asChild className='group/collapsible' key={route.path} defaultOpen={isParentActive}>
+      <Accordion className='w-full' key={title}>
         <SidebarMenuItem>
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton
-              tooltip={title}
-              className={cn('transition-all duration-200 rounded-md', isParentActive && 'bg-primary')}
-            >
-              {Icon && <Icon className={cn('w-4 h-4 mr-2')} />}
-              <span>{title}</span>
-              <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <SidebarMenuSub>{children.map((child) => renderMenuItem(child))}</SidebarMenuSub>
-          </CollapsibleContent>
+          <AccordionItem>
+            <AccordionButton>
+              <SidebarMenuButton
+                tooltip={title}
+                className={cn('transition-all duration-200 rounded-md', isParentActive && 'bg-primary')}
+                asChild
+              >
+                <div>
+                  {Icon && <Icon className={cn('w-4 h-4 mr-2')} />}
+                  <span>{title}</span>
+                  <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                </div>
+              </SidebarMenuButton>
+            </AccordionButton>
+            <AccordionPanel>
+              <SidebarMenuSub>
+                {children.map((child) => (
+                  <React.Fragment key={child.path || child.to}>{renderMenuItem(child)}</React.Fragment>
+                ))}
+              </SidebarMenuSub>
+            </AccordionPanel>
+          </AccordionItem>
         </SidebarMenuItem>
-      </Collapsible>
+      </Accordion>
     )
   }
 

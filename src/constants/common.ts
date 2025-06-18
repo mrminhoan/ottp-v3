@@ -25,3 +25,21 @@ export const UTC_OPTIONS = [
   { value: '+11', label: 'UTC+11' },
   { value: '+12', label: 'UTC+12' }
 ]
+
+export enum BLOCKCHAIN_NETWORK {
+  TRON = 'TRON'
+}
+
+export enum STATUS_TRANSACTION {
+  pending = 'pending',
+  completed = 'completed',
+  canceled = 'canceled'
+}
+
+export const SYMBOL_CURRENCY = {
+  WON: ' 원',
+  USD: ' $',
+  TETHER: ' T',
+  MAIN: ' 원',
+  PERCENT: ' %'
+}

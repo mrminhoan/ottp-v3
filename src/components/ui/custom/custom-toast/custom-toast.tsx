@@ -117,4 +117,4 @@ export class CustomToastClass {
   }
 }
 
-export const CustomToast = new CustomToastClass()
+export const customToast = new CustomToastClass()

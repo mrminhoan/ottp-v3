@@ -1,17 +1,22 @@
 import { TypingText } from '@/components/animate-ui/text/typing'
 import { CustomButton } from '@/components/ui/custom/custom-button/button'
 import { CustomFormItem, FormWrapper } from '@/components/ui/custom/custom-form'
-import { CustomInput } from '@/components/ui/custom/custom-input'
+import { CustomInput, CustomInputPassword } from '@/components/ui/custom/custom-input'
+import { customToast } from '@/components/ui/custom/custom-toast/custom-toast'
 import { useCustomForm } from '@/hooks/use-custom-form'
 import { loginSchema, TLogin } from '@/models/schema/login.schema'
 import { AuthService } from '@/service/pages'
 import { CommonService } from '@/service/pages/common/common.service'
+import { UserStore } from '@/service/pages/users'
 import LanguageMenu from '@/shared/components/selects/select-language'
 import SelectTimezone from '@/shared/components/selects/select-time-zome'
 import { useCustomMutation } from '@/tanstack-query/use-custom-mutation'
 import { useCustomQuery } from '@/tanstack-query/use-custom-query'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginForm = () => {
+  const navigate = useNavigate()
+
   const {
     methods,
     setValue,
@@ -25,7 +30,7 @@ export const LoginForm = () => {
     }
   })
 
-  const { data: ipData } = useCustomQuery({
+  useCustomQuery({
     queryKey: ['ip'],
     fetcher: CommonService.getMyIP,
     props: {
@@ -34,16 +39,13 @@ export const LoginForm = () => {
         return data
       },
       onError: (err) => {
-        console.log(err)
-        // return cusToast.error({
-        //   title: 'Error',
-        //   description: err.response.data.msg
-        // })
+        return customToast.error({
+          title: 'Error',
+          description: err.response.data.msg
+        })
       }
     }
   })
-
-  console.log({ ipData })
 
   const onFinish = async (data) => {
     await loginMutation({
@@ -56,19 +58,30 @@ export const LoginForm = () => {
   const { mutateAsync: loginMutation, isPending: isLoginPending } = useCustomMutation({
     fetcher: AuthService.login,
     onSuccess: async (data) => {
-      //   handleSuccess(data)
+      handleSuccess(data)
       //   socketService.connect(data?.data?.data?.access_token)
       return data
     },
-    onError: (err) => {
-      console.log(err)
-    },
+    // onError: (err) => {
+    //   return customToast.error({
+    //     title: 'Error',
+    //     description: ' err.response.data.msg'
+    //   })
+    // },
     props: {
       onError: (err) => {
-        console.log(err)
+        return customToast.error({
+          title: 'Error',
+          description: err.response?.data?.msg
+        })
       }
     }
   })
+
+  const handleSuccess = (data: any) => {
+    UserStore.setCredentials(data?.data?.data)
+    // navigate('/')
+  }
 
   return (
     <div className='w-full max-w-md rounded-lg bg-[white] p-8 shadow'>
@@ -77,12 +90,12 @@ export const LoginForm = () => {
         <TypingText text='Welcome to One Tether Pay!' inViewOnce={true} className='text-xl font-bold' />
       </div>
 
-      <FormWrapper methods={methods} className='flex flex-col gap-3'>
+      <FormWrapper methods={methods} className='flex flex-col gap-3' onSubmit={onFinish}>
         <CustomFormItem methods={methods} name='username' label='User Name'>
           <CustomInput placeholder='Enter ID' />
         </CustomFormItem>
         <CustomFormItem methods={methods} name='password' label='Password'>
-          <CustomInput type='password' placeholder='Enter password' />
+          <CustomInputPassword type='password' placeholder='Enter password' />
         </CustomFormItem>
 
         <div className='flex gap-2 w-full items-center'>

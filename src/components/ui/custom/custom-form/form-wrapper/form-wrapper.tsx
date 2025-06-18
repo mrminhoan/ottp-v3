@@ -14,6 +14,7 @@ type IProps<T> = IPropsForm<T> & {
   }
   children?: ReactNode | TF
   methods: UseFormReturn<T>
+  onSubmit?: (data: T) => void
 }
 
 export function FormWrapper<T>(props: IProps<T>) {

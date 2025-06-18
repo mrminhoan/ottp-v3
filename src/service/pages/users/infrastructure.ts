@@ -1,6 +1,6 @@
 export type BrowserStorageType = 'local' | 'session'
 
-export const getStoreBrowser = (type: BrowserStorageType = 'session') => {
+export const getStoreBrowser = (type: BrowserStorageType = 'local') => {
   if (typeof window !== 'undefined') {
     return type === 'local' ? window.localStorage : window.sessionStorage
   }
