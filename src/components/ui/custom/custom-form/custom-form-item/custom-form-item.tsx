@@ -1,12 +1,12 @@
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Children, cloneElement, isValidElement } from 'react'
-import { FieldValues, UseFormReturn } from 'react-hook-form'
+import { FieldValues, useFormContext, UseFormReturn } from 'react-hook-form'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useTranslation } from 'react-i18next'
 
 type TControl = {
-  methods: UseFormReturn<FieldValues>
+  methods?: UseFormReturn<FieldValues>
   name?: string
   label?: string
   ref?: any
@@ -19,13 +19,13 @@ type TFormItemProps = {
 } & TControl
 
 function CustomFormItem(props: TFormItemProps) {
-  const { methods, name, label, children, ref: refItem, className } = props
+  const { name, label, children, ref: refItem, className } = props
   const { t } = useTranslation()
-
+  const methods = useFormContext()
   if (!name) {
     return (
       <div className={cn('', className)}>
-        {label && <label className='text-xs font-medium'>{label}</label>}
+        {label && <label className='text-xs font-medium text-label'>{label}</label>}
         <div>
           {Children.map(children, (child) =>
             isValidElement(child)
@@ -47,11 +47,16 @@ function CustomFormItem(props: TFormItemProps) {
       name={name}
       render={({ field, fieldState }) => {
         return (
-          <FormItem className={cn('', className)}>
+          <FormItem className={cn('space-y-0 relative', className)}>
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <FormLabel className={cn('text-xs font-medium', fieldState.error && 'text-destructive')}>
+                  <FormLabel
+                    className={cn(
+                      'absolute text-[10px] text-label font-medium -top-2.5 left-2 bg-white px-1 z-10',
+                      fieldState.error && 'text-destructive'
+                    )}
+                  >
                     {label}
                   </FormLabel>
                 </TooltipTrigger>
@@ -78,6 +83,12 @@ function CustomFormItem(props: TFormItemProps) {
                           field.onChange?.(...event)
                           if (typeof child.props['onValueChange'] === 'function') {
                             child.props['onValueChange'](...event)
+                          }
+                        },
+                        onCheckedChange: (...event: any) => {
+                          field.onChange?.(...event)
+                          if (typeof child.props['onCheckedChange'] === 'function') {
+                            child.props['onCheckedChange'](...event)
                           }
                         },
                         ref: refItem as any,

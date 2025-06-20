@@ -9,7 +9,7 @@ export const MainLayout = () => {
   return (
     <SidebarProvider>
       <MainSidebar routes={routes[0]} />
-      <SidebarInset>
+      <SidebarInset className='overflow-hidden '>
         <MainHeader />
         <Separator />
         <div className='container'>

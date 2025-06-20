@@ -68,7 +68,8 @@ export default {
         warning: 'var(--warning)',
         success: 'var(--success)',
         error: 'var(--error)',
-        disabled: 'var(--disabled)'
+        disabled: 'var(--disabled)',
+        label: 'var(--label)'
       },
       backgroundImage: {
         'info-gradient': 'var(--info-gradient)',

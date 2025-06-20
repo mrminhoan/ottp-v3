@@ -15,6 +15,7 @@ type IProps<T> = IPropsForm<T> & {
   children?: ReactNode | TF
   methods: UseFormReturn<T>
   onSubmit?: (data: T) => void
+  ref?: React.RefObject<HTMLFormElement>
 }
 
 export function FormWrapper<T>(props: IProps<T>) {
@@ -30,7 +31,12 @@ export function FormWrapper<T>(props: IProps<T>) {
           </div>
         ) : (
           <>
-            <CustomForm {...rest} className={cn('min-h-full h-auto w-full relative', rest.className)} methods={methods}>
+            <CustomForm
+              {...rest}
+              className={cn('min-h-full h-auto w-full relative', rest.className)}
+              methods={methods}
+              ref={rest.ref}
+            >
               {({ height }) => (typeof children === 'function' ? children({ height }) : children)}
             </CustomForm>
           </>

@@ -51,12 +51,12 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
 
   const btnClass = (disabled: boolean) =>
     cn(
-      'px-2 rounded-xs text-white font-medium cursor-pointer text-xs py-1 px-2',
-      disabled ? 'bg-gray-300' : 'bg-blue-400 hover:opacity-85'
+      'px-2 rounded-xs text-white font-medium cursor-pointer text-xs py-1 px-2 bg-background shadow-sm text-black transition-opacity duration-200 rounded-sm',
+      disabled ? 'opacity-30' : ' hover:opacity-70'
     )
 
   return (
-    <div className='flex items-center justify-center gap-5 mt-10 flex-wrap'>
+    <div className='flex items-center justify-center gap-5 mt-10 flex-wrap text-xs'>
       <div className={cn('flex justify-center', classNameContainer)}>
         <div className='flex gap-2 select-none flex-wrap'>
           <button className={btnClass(page <= 1)} disabled={page <= 1} onClick={() => setPage(1)}>
@@ -67,7 +67,7 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
           </button>
 
           {range.map((page) => {
-            if (page === 'dots') {
+            if (page === 'dots') {1
               return <span key='dots'>...</span>
             }
             return (
@@ -77,8 +77,8 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
                   setPage(page)
                 }}
                 className={cn(
-                  'px-3  rounded-xs text-white font-medium cursor-pointer hover:opacity-85 text-md',
-                  active === page ? 'bg-red-400' : 'bg-blue-400'
+                  'px-3 rounded-xs text-white font-medium cursor-pointer hover:opacity-85 text-md rounded-sm transition-colors duration-200',
+                  active === page ? 'bg-[black]/80' : 'text-black'
                 )}
               >
                 {page}
@@ -104,13 +104,13 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
       </div>
 
       <CustomSelect
-        onChange={handleChangeItemPerPage}
+        onValueChange={handleChangeItemPerPage}
         value={limit.toString()}
         options={PAGINATION.ITEM_PER_PAGE.map((item) => ({
           value: item.toString(),
           label: item.toString()
         }))}
-        className='w-[80px] border border-border rounded-xs '
+        className='w-[80px] rounded-md'
         placeholder='Per page'
       />
     </div>

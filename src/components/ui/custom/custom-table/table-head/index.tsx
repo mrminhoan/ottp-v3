@@ -10,7 +10,7 @@ export const TableHead = React.forwardRef<HTMLTableSectionElement, ITableHeadPro
   return (
     <thead
       ref={ref}
-      className={cn('[&_tr]:border-b w-full text-muted-foreground bg-background overflow-hidden text-center shadow-md max-h-1', className)}
+      className={cn('w-full text-muted-foreground bg-background overflow-hidden text-center shadow-md max-h-1 border-b border-border', className)}
       {...rest}
     >
       {children}

@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { Trash2, Search, Filter, XCircle, CheckCircle2 } from 'lucide-react'
+import { Trash2, Search, Filter, XCircle, CheckCircle2, MessageCirclePlus } from 'lucide-react'
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { VariantProps } from 'class-variance-authority'
 import { buttonVariants } from '../../button'
 import { CustomButton } from './button'
 
-type ActionType = 'search' | 'filter' | 'delete' | 'cancel' | 'approve'
+type ActionType = 'search' | 'filter' | 'delete' | 'cancel' | 'approve' | 'add'
 
 interface ActionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   action: ActionType
@@ -20,7 +20,8 @@ const actionMap: Record<ActionType, { icon: React.ElementType; label: string }> 
   filter: { icon: Filter, label: 'Filter' },
   delete: { icon: Trash2, label: 'Delete' },
   cancel: { icon: XCircle, label: 'Cancel' },
-  approve: { icon: CheckCircle2, label: 'Approve' }
+  approve: { icon: CheckCircle2, label: 'Approve' },
+  add: { icon: MessageCirclePlus, label: 'Add' }
 }
 
 const variantMap: Record<ActionType, VariantProps<typeof buttonVariants>['variant']> = {
@@ -28,7 +29,8 @@ const variantMap: Record<ActionType, VariantProps<typeof buttonVariants>['varian
   filter: 'secondary',
   delete: 'destructive',
   cancel: 'cancel',
-  approve: 'success'
+  approve: 'success',
+  add: 'default'
 }
 
 export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(

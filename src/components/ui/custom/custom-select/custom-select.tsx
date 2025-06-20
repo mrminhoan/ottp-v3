@@ -12,7 +12,7 @@ interface IOption {
 interface IProps {
   options: IOption[]
   value: string
-  onChange: (value: string | number | null) => void
+  onChange?: (value: string | number | null) => void
   placeholder?: string
   className?: string
   classNameTrigger?: string
@@ -45,7 +45,7 @@ export const CustomSelect = (props: IProps) => {
       <Select onValueChange={onValueChange} value={value} disabled={disabled} defaultValue={value}>
         <div
           className={cn(
-            'min-w-[5rem] h-9 flex items-center justify-between gap-2 border border-border rounded-xs outline-none',
+            'min-w-[5rem] h-9 flex items-center justify-between gap-2 border border-border rounded-xs outline-none ',
             className
           )}
         >
@@ -55,14 +55,16 @@ export const CustomSelect = (props: IProps) => {
           >
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
-          {allowClear && value ? (
-            <XIcon
-              className='w-4 h-4 cursor-pointer text-muted-foreground hover:text-foreground'
-              //   onClick={() => onChange(null)}
-            />
-          ) : (
-            <ChevronDownIcon className='w-4 h-4' />
-          )}
+          <span className='pr-2'>
+            {allowClear && value ? (
+              <XIcon
+                className='w-4 h-4 cursor-pointer text-muted-foreground hover:text-foreground'
+                //   onClick={() => onChange(null)}
+              />
+            ) : (
+              <ChevronDownIcon className='w-4 h-4' />
+            )}
+          </span>
         </div>
         <SelectContent className={cn('', classNameContent)}>
           {options.map((option) => (

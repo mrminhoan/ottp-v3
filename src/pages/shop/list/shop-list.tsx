@@ -8,6 +8,10 @@ import {
   DropdownMenuTrigger
 } from '@/components/animate-ui/radix/dropdown-menu'
 import Box from '@/components/ui/custom/box'
+import { ActionButton } from '@/components/ui/custom/custom-button/action-button'
+import CustomButtonCopy from '@/components/ui/custom/custom-button/button-copy'
+import { useGlobalDialog } from '@/components/ui/custom/custom-dialog/custom-dialog'
+import { OpacityAnimation } from '@/components/ui/custom/custom-frammer-motion'
 import DataTable from '@/components/ui/custom/custom-table/data-table/data-table'
 import { Separator } from '@/components/ui/separator'
 import { API } from '@/constants/api'
@@ -15,13 +19,16 @@ import { SYMBOL_CURRENCY } from '@/constants/common'
 import { CustomFormatNumber } from '@/lib/lib-format-number'
 import { ShopModelResponse, ShopSearchModel } from '@/models/class/shop/shop.model'
 import { ShopService } from '@/service/pages/shop/shop.service'
+import { KeyValueComp } from '@/shared/components'
 import { useCustomQuery } from '@/tanstack-query'
 import { ColumnDef } from '@tanstack/react-table'
 import { BoltIcon, ChevronDownIcon } from 'lucide-react'
 import React from 'react'
 import { useState } from 'react'
+import { CreateForm } from './form/create-form'
 
 const ShopList = () => {
+  const dialog = useGlobalDialog()
   const [paramSearch, setParamSearch] = useState<ShopSearchModel>(new ShopSearchModel())
 
   const { data: shopList, isFetching } = useCustomQuery({
@@ -57,7 +64,7 @@ const ShopList = () => {
                   <ChevronDownIcon className='ml-2 h-4 w-4' />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className='w-[13rem] bg-surface'>
+              <DropdownMenuContent className='w-[20rem] bg-surface'>
                 <DropdownMenuLabel>
                   <div className='flex flex-col gap-2'>
                     <div className='flex items-center gap-2 justify-between'>
@@ -67,11 +74,22 @@ const ShopList = () => {
                       <span className='text-xs'>{data?.username}</span>
                     </div>
 
+                    <Separator />
+
                     <div className='flex items-center gap-2 justify-between'>
                       <p className='border border-border rounded-xs px-2 py-0.5 bg-primary text-white min-w-[5.5rem] text-center text-xs'>
                         Shop name
                       </p>
                       <span className='text-xs'>{data?.shop_name}</span>
+                    </div>
+
+                    <Separator />
+
+                    <div className='flex items-center gap-2 justify-between'>
+                      <p className='border border-border rounded-xs px-2 py-0.5 bg-primary text-white min-w-[5.5rem] text-center text-xs'>
+                        Wallet
+                      </p>
+                      <CustomButtonCopy textToCopy={data?.address_base58}>{data?.address_base58}</CustomButtonCopy>
                     </div>
                   </div>
                 </DropdownMenuLabel>
@@ -113,7 +131,7 @@ const ShopList = () => {
           sorter: true
         },
         header: 'User Amount',
-        size: 150,
+        size: 50,
         cell: ({ row }) => {
           const data = row.original
           return (
@@ -124,6 +142,7 @@ const ShopList = () => {
           )
         }
       },
+
       {
         accessorKey: '',
         header: `Deposit/Withdrawal (${SYMBOL_CURRENCY.MAIN})`,
@@ -133,7 +152,7 @@ const ShopList = () => {
         },
         cell: ({ row }) => {
           return (
-            <div className='p-4   gap-4 flex flex-col'>
+            <div className='py-1 px-2   gap-4 flex flex-col'>
               <div className='flex overflow-hidden rounded w-full'>
                 <span className='text-xs flex items-center  bg-deposit text-white font-semibold px-3 py-1'>D</span>
                 <span className=' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
@@ -153,13 +172,13 @@ const ShopList = () => {
       {
         accessorKey: '',
         header: `Deposit/Withdrawal (${SYMBOL_CURRENCY.TETHER})`,
-        size: 150,
+        size: 200,
         meta: {
           sorter: true
         },
         cell: ({ row }) => {
           return (
-            <div className='p-4 gap-4 flex flex-col'>
+            <div className='py-1 px-2 gap-4 flex flex-col'>
               <div className='flex overflow-hidden rounded w-full'>
                 <span className='text-xs flex items-center  bg-deposit text-white font-semibold px-3 py-1'>D</span>
                 <span className=' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
@@ -179,26 +198,34 @@ const ShopList = () => {
 
       {
         accessorKey: '',
-        header: `Deposit/Withdrawal (${SYMBOL_CURRENCY.TETHER})`,
-        size: 150,
+        header: `Commission`,
+        size: 200,
         meta: {
           sorter: true
         },
         cell: ({ row }) => {
           return (
-            <div className='p-4 gap-4 flex flex-col'>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-deposit text-white font-semibold px-3 py-1'>D</span>
-                <span className=' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
-                </span>
-              </div>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-withdrawal text-white font-semibold px-3 py-1'>W</span>
-                <span className='flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
-                </span>
-              </div>
+            <div className='py-1 px-2 gap-4 flex flex-col'>
+              <KeyValueComp title='D' classNameKey='bg-deposit'>
+                <CustomFormatNumber value={row.original.commission_rate} suffix={SYMBOL_CURRENCY.PERCENT} />
+              </KeyValueComp>
+              <KeyValueComp title='W' classNameKey='bg-withdrawal'>
+                <CustomFormatNumber value={row.original.commission_rate_withdraw} suffix={SYMBOL_CURRENCY.PERCENT} />
+              </KeyValueComp>
+            </div>
+          )
+        }
+      },
+      {
+        accessorKey: 'created_at',
+        header: 'Date',
+        size: 200,
+        cell: ({ row }) => {
+          return (
+            <div className='flex overflow-hidden rounded w-full'>
+              <KeyValueComp title='Register'>
+                <CustomFormatNumber value={row.original.commission_rate_withdraw} suffix={SYMBOL_CURRENCY.PERCENT} />
+              </KeyValueComp>
             </div>
           )
         }
@@ -212,20 +239,31 @@ const ShopList = () => {
       ...value
     }))
   }
+
+  const handleOpenDialog = () => {
+    dialog.open({
+      title: 'Create new shop',
+      content: <CreateForm />
+    })
+  }
+
   return (
     <Box>
-      <DataTable
-        columns={columns}
-        data={shopList?.data?.data}
-        totalItem={shopList?.data?.totalItem}
-        totalPages={shopList?.data?.totalPages}
-        // data={shopList?.data}
-        // totalItem={shopList?.data?.length}
-        paramSearch={paramSearch}
-        onTableChange={handleParamSearchChange}
-        getRowCanExpand={() => true}
-        loading={isFetching}
-      />
+      <ActionButton action='add' onClick={handleOpenDialog}>
+        New Shop
+      </ActionButton>
+      <OpacityAnimation>
+        <DataTable
+          columns={columns}
+          data={shopList?.data?.data}
+          totalItem={shopList?.data?.totalItem}
+          totalPages={shopList?.data?.totalPages}
+          paramSearch={paramSearch}
+          onTableChange={handleParamSearchChange}
+          getRowCanExpand={() => true}
+          loading={isFetching}
+        />
+      </OpacityAnimation>
     </Box>
   )
 }

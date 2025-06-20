@@ -61,7 +61,7 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
             </span>
           )}
 
-          {children ? <span className={cn('', classNameContent)}>{children}</span> : null}
+          {children ? <span className={cn('text-xs font-medium', classNameContent)}>{children}</span> : null}
 
           {RightIcon && (
             <span className='inline-flex items-center justify-center w-full'>

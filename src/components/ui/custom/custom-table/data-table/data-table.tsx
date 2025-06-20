@@ -159,9 +159,9 @@ function DataTable<T>(props: IDataTableProps<T>) {
   return (
     <>
       <DataTableProvider useTable={useTable} paramSearch={paramSearch} onTableChange={onTableChange}>
-        <div style={{ ...columnSizeVars }} className={cn('w-full overflow-x-auto bg-surface', wrapperClassName)}>
+        <div style={{ ...columnSizeVars }} className={cn('w-full overflow-y-auto  max-h-[700px] bg-surface border-t border-border', wrapperClassName)}>
           <Table className='w-full min-w-full'>
-            <Table.Head>
+            <Table.Head className='sticky top-0 z-20 bg-white'>
               {useTable.getHeaderGroups().map((headerGroup) => {
                 return (
                   <Table.Row key={headerGroup.id}>
@@ -231,7 +231,7 @@ function DataTable<T>(props: IDataTableProps<T>) {
                               minWidth: `var(--col-size-${cell.column.id})`,
                               ...getCommonPinningStyles(cell.column)
                             }}
-                            className='px-2 border-b border-x border-border text-xs truncate'
+                            className='border-b border-x border-border text-xs truncate px-4'
                           >
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </Table.Cell>

@@ -2,7 +2,7 @@ import { TypingText } from '@/components/animate-ui/text/typing'
 import { CustomButton } from '@/components/ui/custom/custom-button/button'
 import { CustomFormItem, FormWrapper } from '@/components/ui/custom/custom-form'
 import { CustomInput, CustomInputPassword } from '@/components/ui/custom/custom-input'
-import { customToast } from '@/components/ui/custom/custom-toast/custom-toast'
+import { alertService } from '@/components/ui/custom/custom-toast/alert.service'
 import { useCustomForm } from '@/hooks/use-custom-form'
 import { loginSchema, TLogin } from '@/models/schema/login.schema'
 import { AuthService } from '@/service/pages'
@@ -39,9 +39,9 @@ export const LoginForm = () => {
         return data
       },
       onError: (err) => {
-        return customToast.error({
+        return alertService.error({
           title: 'Error',
-          description: err.response.data.msg
+          message: err.response.data.msg
         })
       }
     }
@@ -70,9 +70,9 @@ export const LoginForm = () => {
     // },
     props: {
       onError: (err) => {
-        return customToast.error({
+        return alertService.error({
           title: 'Error',
-          description: err.response?.data?.msg
+          message: err.response?.data?.msg
         })
       }
     }
@@ -80,7 +80,7 @@ export const LoginForm = () => {
 
   const handleSuccess = (data: any) => {
     UserStore.setCredentials(data?.data?.data)
-    // navigate('/')
+    navigate('/')
   }
 
   return (
@@ -108,7 +108,7 @@ export const LoginForm = () => {
         </CustomFormItem>
 
         <CustomButton
-          type='submit'
+          type='button'
           className='mt-4 w-full text-white font-bold'
           onClick={methods.handleSubmit(onFinish)}
           loading={isLoginPending}

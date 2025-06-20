@@ -51,15 +51,17 @@
   --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
   --tracking-normal: 0.025em;
 
+  --label: #707070;
   --info: #54a0ff;
   --warning: #f1c40f;
   --success: #30cb83;
   --error: #e74c3c;
   --disabled: #a3a0a0;
-  --info-gradient: linear-gradient(to right, #54a0ff, #2e86de);
-  --warning-gradient: linear-gradient(to right, #f1c40f, #f39c12);
-  --success-gradient: linear-gradient(to right, #30cb83, #27ae60);
-  --error-gradient: linear-gradient(to right, #e74c3c, #c0392b);
+
+  --success-gradient: linear-gradient(to right, #b2e9cf, #8ddfbb);
+  --error-gradient: linear-gradient(to right, #f6a9a3, #ee8d87);
+  --info-gradient: linear-gradient(to right, #8bbcff, #66aaff);
+  --warning-gradient: linear-gradient(to right, #ffdf80, #ffd24d);
 
   /* role */
   --color-user-gradient: linear-gradient(to right, #6366f1, #4f46e5);
@@ -123,6 +125,12 @@ body {
   letter-spacing: var(--tracking-normal);
 }
 
+@layer components {
+  .container {
+    @apply py-2 px-6 max-w-full;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -132,8 +140,11 @@ body {
   }
 }
 
-@layer components {
-  .container {
-    @apply py-2 px-6 max-w-full;
-  }
+[data-sonner-toast] {
+  /* background: transparent !important; */
+  /* box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important; */
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
 }

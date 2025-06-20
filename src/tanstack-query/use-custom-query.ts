@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { IParameter, TResult } from './react-query.types'
 import { useEffect, useState } from 'react'
 import { createKeyQuery } from '@/lib/create-key-query'
@@ -16,7 +16,8 @@ export const useCustomQuery = <T, P>(parameter?: IParameter<T, P, 'query'>): TRe
       payload
     }),
     // staleTime: 5 * 60 * 1000,
-    queryFn: () => fetcher(props)
+    queryFn: () => fetcher(props),
+    
   })
 
   const { data: response } = data
