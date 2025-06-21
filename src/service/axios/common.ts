@@ -11,7 +11,7 @@ import { socketService } from '../socket/socket.service'
 import { SOCKET_ID } from '@/constants/socket'
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL_PRODUCTION,
   timeout: 300000,
   headers: {
     'Content-Type': 'application/json'

@@ -102,7 +102,7 @@ function DataTable<T>(props: IDataTableProps<T>) {
       position: isPinned ? 'sticky' : 'relative',
       width: column.getSize(),
       zIndex: isPinned ? 1 : 0,
-      backgroundColor: isPinned ? 'white' : ''
+      backgroundColor: isPinned ? 'var(--table-pinned-bg)' : ''
     }
   }
 
@@ -161,7 +161,7 @@ function DataTable<T>(props: IDataTableProps<T>) {
       <DataTableProvider useTable={useTable} paramSearch={paramSearch} onTableChange={onTableChange}>
         <div style={{ ...columnSizeVars }} className={cn('w-full overflow-y-auto  max-h-[700px] bg-surface border-t border-border', wrapperClassName)}>
           <Table className='w-full min-w-full'>
-            <Table.Head className='sticky top-0 z-20 bg-white'>
+            <Table.Head className='sticky top-0 z-20 '>
               {useTable.getHeaderGroups().map((headerGroup) => {
                 return (
                   <Table.Row key={headerGroup.id}>

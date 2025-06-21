@@ -59,7 +59,7 @@ const ShopList = () => {
                 <button className='inline-flex items-center justify-between rounded-md transition-colors focus:outline-none focus:ring-none focus:ring-offset-2 disabled:opacity-50 data-[state=open]:bg-accent data-[state=open]:text-accent-foreground hover:bg-[white] hover:text-accent-foreground border border-transparent hover:border-border px-3 py-1 gap-5'>
                   <div className='flex flex-col items-start min-w-[8rem]'>
                     <p className='text-sm font-medium'>{data?.username}</p>
-                    <p className='text-xs text-black/50'>{data?.shop_name}</p>
+                    <p className='text-xs text-foreground-muted opacity-50'>{data?.shop_name}</p>
                   </div>
                   <ChevronDownIcon className='ml-2 h-4 w-4' />
                 </button>
@@ -152,19 +152,13 @@ const ShopList = () => {
         },
         cell: ({ row }) => {
           return (
-            <div className='py-1 px-2   gap-4 flex flex-col'>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-deposit text-white font-semibold px-3 py-1'>D</span>
-                <span className=' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit} suffix={SYMBOL_CURRENCY.MAIN} />
-                </span>
-              </div>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-withdrawal font-semibold px-3 py-1 text-white'>W</span>
-                <span className='flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit} suffix={SYMBOL_CURRENCY.MAIN} />
-                </span>
-              </div>
+            <div className='py-1 px-2 gap-4 flex flex-col'>
+              <KeyValueComp title='D' classNameKey='bg-deposit'>
+                <CustomFormatNumber value={row.original.total_deposit} suffix={SYMBOL_CURRENCY.MAIN} />
+              </KeyValueComp>
+              <KeyValueComp title='W' classNameKey='bg-withdrawal'>
+                <CustomFormatNumber value={row.original.total_deposit} suffix={SYMBOL_CURRENCY.MAIN} />
+              </KeyValueComp>
             </div>
           )
         }
@@ -179,18 +173,12 @@ const ShopList = () => {
         cell: ({ row }) => {
           return (
             <div className='py-1 px-2 gap-4 flex flex-col'>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-deposit text-white font-semibold px-3 py-1'>D</span>
-                <span className=' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
-                </span>
-              </div>
-              <div className='flex overflow-hidden rounded w-full'>
-                <span className='text-xs flex items-center  bg-withdrawal text-white font-semibold px-3 py-1'>W</span>
-                <span className='flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right'>
-                  <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
-                </span>
-              </div>
+              <KeyValueComp title='D' classNameKey='bg-deposit'>
+                <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
+              </KeyValueComp>
+              <KeyValueComp title='W' classNameKey='bg-withdrawal'>
+                <CustomFormatNumber value={row.original.total_deposit_t} suffix={SYMBOL_CURRENCY.TETHER} />
+              </KeyValueComp>
             </div>
           )
         }

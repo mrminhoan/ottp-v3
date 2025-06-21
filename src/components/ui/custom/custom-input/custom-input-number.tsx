@@ -84,7 +84,7 @@ const CustomInputNumber = forwardRef<HTMLInputElement, NumberInputProps>(
     }
 
     return (
-      <div className={cn('flex items-center border border-border rounded-md text-xs bg-white', className)}>
+      <div className={cn('flex items-center border border-border rounded-md text-xs', className)}>
         {isShowController && (
           <button
             type='button'

@@ -84,13 +84,13 @@ export const LoginForm = () => {
   }
 
   return (
-    <div className='w-full max-w-md rounded-lg bg-[white] p-8 shadow'>
+    <div className='w-full max-w-md rounded-lg bg-background p-8 shadow'>
       <div className='mb-8 flex flex-col items-center'>
         <img src='/images/logo.png' alt='Logo' className='mb-4 w-20' />
         <TypingText text='Welcome to One Tether Pay!' inViewOnce={true} className='text-xl font-bold' />
       </div>
 
-      <FormWrapper methods={methods} className='flex flex-col gap-3' onSubmit={onFinish}>
+      <FormWrapper methods={methods} className='flex flex-col gap-6' onSubmit={onFinish}>
         <CustomFormItem methods={methods} name='username' label='User Name'>
           <CustomInput placeholder='Enter ID' />
         </CustomFormItem>

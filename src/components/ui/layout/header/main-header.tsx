@@ -1,4 +1,5 @@
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'
+import { useShopStore } from '@/store/shop.store'
 
 export function MainHeader() {
   const { isMobile } = useSidebar()

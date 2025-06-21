@@ -10,6 +10,7 @@ import { AppConfigProvider } from '@/context/app-config-provider'
 import { UserStore } from '@/service/pages/users/store'
 import { Toaster } from '@/components/ui/sonner'
 import { DialogProvider } from '@/components/ui/custom/custom-dialog/custom-dialog'
+import { ThemeProvider } from '@/components/theme-provider'
 
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { AppConfigProvider } from '@/components/theme/theme-provider'
@@ -49,14 +50,16 @@ export const WrapperConfig = async (props: IProps) => {
     root.render(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
-              <DialogProvider>
-                <SidebarWrapper>{children}</SidebarWrapper>
-                <Toaster />
-              </DialogProvider>
-            </AppConfigProvider>
-          </BrowserRouter>
+          <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+            <BrowserRouter>
+              <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
+                <DialogProvider>
+                  <SidebarWrapper>{children}</SidebarWrapper>
+                  <Toaster />
+                </DialogProvider>
+              </AppConfigProvider>
+            </BrowserRouter>
+          </ThemeProvider>
         </QueryClientProvider>
       </StrictMode>
     )

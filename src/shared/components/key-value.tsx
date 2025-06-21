@@ -17,7 +17,7 @@ export const KeyValueComp = (props: Iprops) => {
       </span>
       <span
         className={cn(
-          ' flex-1 text-xs text-foreground font-medium bg-white border border-border px-3 py-1 border-l-0 rounded-r-md text-right',
+          ' flex-1 text-xs text-foreground font-medium  border border-border px-3 py-1 border-l-0 rounded-r-md text-right',
           classNameValue
         )}
       >

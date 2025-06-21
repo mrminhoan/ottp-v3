@@ -50,7 +50,7 @@ export const CustomSelect = (props: IProps) => {
           )}
         >
           <SelectTrigger
-            className={cn('w-full border-none shadow-none outline-none', classNameTrigger)}
+            className={cn('w-full border-none shadow-none outline-none focus:ring-0 focus:ring-offset-0', classNameTrigger)}
             disabled={disabled}
           >
             <SelectValue placeholder={placeholder} />

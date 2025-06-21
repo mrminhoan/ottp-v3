@@ -53,15 +53,15 @@ function CustomFormItem(props: TFormItemProps) {
                 <TooltipTrigger asChild>
                   <FormLabel
                     className={cn(
-                      'absolute text-[10px] text-label font-medium -top-2.5 left-2 bg-white px-1 z-10',
-                      fieldState.error && 'text-destructive'
+                      'absolute text-[10px] text-label font-medium -top-2.5 left-2 bg-background px-1 z-10',
+                      fieldState.error && 'text-error'
                     )}
                   >
                     {label}
                   </FormLabel>
                 </TooltipTrigger>
                 {fieldState.error && (
-                  <TooltipContent className='bg-destructive text-white'>
+                  <TooltipContent className='text-white bg-error'>
                     <p>{t(fieldState.error?.message ?? '')}</p>
                   </TooltipContent>
                 )}

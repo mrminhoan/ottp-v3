@@ -61,7 +61,7 @@ function DropdownMenu({
 type DropdownMenuTriggerProps = React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>
 
 function DropdownMenuTrigger(props: DropdownMenuTriggerProps) {
-  return <DropdownMenuPrimitive.Trigger data-slot='dropdown-menu-trigger' {...props} />
+  return <DropdownMenuPrimitive.Trigger data-slot='dropdown-menu-trigger' {...props} className='bg-background hover:bg-background hover:opacity-50' />
 }
 
 type DropdownMenuGroupProps = React.ComponentProps<typeof DropdownMenuPrimitive.Group>

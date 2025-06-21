@@ -109,7 +109,7 @@ export const SelectSearch: React.FC<{
         {...restProps}
       >
         <Command>
-          <CommandInput placeholder='Search...' />
+          <CommandInput placeholder='Search...' style={{ backgroundColor: 'transparent' }} />
           <CommandList className='max-h-[unset] overflow-y-hidden'>
             {isLoading ? (
               <div className='flex items-center justify-center h-20 bg-background'>
@@ -223,7 +223,7 @@ export const SelectSearchTrigger = React.forwardRef<
         type='button'
         disabled={disabled}
         className={cn(
-          'flex  w-full min-h-9 max-h-[36px] items-center justify-between  py-[4px] px-0 [&_svg]:pointer-events-auto bg-[white]',
+          'flex  w-full min-h-9 max-h-[36px] items-center justify-between  py-[4px] px-0 [&_svg]:pointer-events-auto ',
           'hover:bg-background border border-border rounded-sm ',
           disabled && '[&_svg]:pointer-events-none',
           'shrink-1',

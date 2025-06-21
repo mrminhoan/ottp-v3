@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --table-pinned-bg: white;
+
   --background: #fcfcfc;
   --foreground: #171717;
   --surface: #ffffff;
@@ -73,6 +75,8 @@
 }
 
 .dark {
+  --table-pinned-bg: #1e1e1e;
+
   --background: #121212;
   --foreground: #e2e8f0;
   --surface: #1e1e1e;
@@ -91,7 +95,7 @@
   --accent-foreground: #fafafa;
   --destructive: #541c15;
   --destructive-foreground: #ede9e8;
-  --border: #292929;
+  --border: #404040;
   --input: #242424;
   --ring: #4ade80;
   --chart-1: #4ade80;

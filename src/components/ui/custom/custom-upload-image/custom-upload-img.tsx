@@ -70,7 +70,7 @@ export default function UploadImage(props: IProps) {
 
   return (
     <div className='w-full relative'>
-      <Label className='absolute text-[10px] text-label font-medium -top-2.5 left-2 bg-white px-1 z-10'>
+      <Label className='absolute text-[10px] text-label font-medium -top-2.5 left-2 bg-background px-1 z-10'>
         {label || 'Upload file'}
       </Label>
       <div
@@ -99,14 +99,14 @@ export default function UploadImage(props: IProps) {
       >
         <input ref={fileInputRef} type='file' accept='image/*' onChange={handleChange} className='hidden' />
 
-        <div className='p-8 space-y-4'>
+        <div className='p-8 space-y-4 bg-surface'>
           {!fileName ? (
             <div className='flex flex-col items-center gap-2'>
               <Upload className='w-8 h-8 text-zinc-400 dark:text-zinc-500' />
               <p className='text-sm text-zinc-600 dark:text-zinc-400'>Drag and drop or click to upload</p>
             </div>
           ) : (
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center gap-4 '>
               {preview ? (
                 <div className='relative w-16 h-16 rounded-lg overflow-hidden'>
                   <img src={preview} alt='Preview' className='w-full h-full object-cover' />

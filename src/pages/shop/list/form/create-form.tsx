@@ -1,4 +1,3 @@
-import { Switch } from '@/components/animate-ui/base/switch'
 import { CustomButton } from '@/components/ui/custom/custom-button/button'
 import CustomButtonCopy from '@/components/ui/custom/custom-button/button-copy'
 import { useGlobalDialog } from '@/components/ui/custom/custom-dialog/custom-dialog'
@@ -21,7 +20,7 @@ import { useEffect, useState } from 'react'
 const TIME_COUNT_DOWN = 10000
 export const CreateForm = () => {
   const { status, setStatus, reset, setChecking, setExisted, setNotExisted } = useCheckStatus()
-  const { formRef, close } = useGlobalDialog()
+  const { close } = useGlobalDialog()
 
   const [successUrl, setSuccessUrl] = useState<string | null>(null)
   const [countdown, setCountdown] = useState<number>(10)
@@ -100,10 +99,9 @@ export const CreateForm = () => {
   }
 
   const onFinish = async (data) => {
-    // registerShop({
-    //   payload: data
-    // })
-    console.log(data)
+    registerShop({
+      payload: data
+    })
   }
 
   const handleCheckExistedShop = async () => {
@@ -231,7 +229,7 @@ export const CreateForm = () => {
           <CustomFormItem methods={methods} name='insurance_money' label='Insurance Money' className='w-1/2'>
             <CustomInputNumber placeholder='Enter insurance money' suffix={SYMBOL_CURRENCY.WON} min={0} stepper={100} />
           </CustomFormItem>
-          <div className='w-1/2'></div>
+          <div className=''></div>
         </div>
 
         <div className='flex justify-between mt-4 gap-6'>
