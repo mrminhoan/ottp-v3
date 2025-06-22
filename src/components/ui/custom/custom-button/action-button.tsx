@@ -49,6 +49,7 @@ export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProp
               loading={loading}
               disabled={disabled}
               icon={Icon}
+              type="button"
               {...props}
             />
           </TooltipTrigger>

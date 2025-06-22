@@ -108,7 +108,7 @@ export const LoginForm = () => {
         </CustomFormItem>
 
         <CustomButton
-          type='button'
+          type='submit'
           className='mt-4 w-full text-white font-bold'
           onClick={methods.handleSubmit(onFinish)}
           loading={isLoginPending}

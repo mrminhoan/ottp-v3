@@ -36,8 +36,8 @@ export const API = {
     DETAIL: '/seller/details'
   },
 
-  EXCHANGE: {
-    EXCHANGE: '/transaction/list',
+  TRANSACTION: {
+    LIST: '/transaction/list',
     ACCEPT: '/transaction/accept',
     CANCEL: '/transaction/reject'
   },

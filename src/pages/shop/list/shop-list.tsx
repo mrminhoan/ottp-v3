@@ -26,6 +26,9 @@ import { BoltIcon, ChevronDownIcon } from 'lucide-react'
 import React from 'react'
 import { useState } from 'react'
 import { CreateForm } from './form/create-form'
+import { PATHS } from '@/constants/paths'
+import { LoadingOverlay } from '@/components/ui/custom/custom-loading'
+import { FilterBox } from './filter/filter'
 
 const ShopList = () => {
   const dialog = useGlobalDialog()
@@ -95,13 +98,13 @@ const ShopList = () => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                // onClick={() => {
-                //   window.open(
-                //     `${PATHS.EXTERNAL.SHOP.ROOT}?id=${data?.id}`,
-                //     'shop-detail',
-                //     'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
-                //   )
-                // }}
+                  onClick={() => {
+                    window.open(
+                      `${PATHS.EXTERNAL.SHOP.BASIC_INFO}?id=${data?.id}`,
+                      'shop-detail',
+                      'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
+                    )
+                  }}
                 >
                   <BoltIcon size={16} className='opacity-60' aria-hidden='true' />
                   <span>Settings</span>
@@ -237,20 +240,25 @@ const ShopList = () => {
 
   return (
     <Box>
-      <ActionButton action='add' onClick={handleOpenDialog}>
-        New Shop
-      </ActionButton>
+      <div className='flex items-center justify-between mb-4'>
+        <FilterBox className='flex-1 w-full' onSearch={handleParamSearchChange} onReset={() => setParamSearch(new ShopSearchModel())} />
+        <ActionButton action='add' onClick={handleOpenDialog}>
+          New Shop
+        </ActionButton>
+      </div>
       <OpacityAnimation>
-        <DataTable
-          columns={columns}
-          data={shopList?.data?.data}
-          totalItem={shopList?.data?.totalItem}
-          totalPages={shopList?.data?.totalPages}
-          paramSearch={paramSearch}
-          onTableChange={handleParamSearchChange}
-          getRowCanExpand={() => true}
-          loading={isFetching}
-        />
+        <LoadingOverlay isLoading={isFetching}>
+          <DataTable
+            columns={columns}
+            data={shopList?.data?.data}
+            totalItem={shopList?.data?.totalItem}
+            totalPages={shopList?.data?.totalPages}
+            paramSearch={paramSearch}
+            onTableChange={handleParamSearchChange}
+            getRowCanExpand={() => true}
+            loading={isFetching}
+          />
+        </LoadingOverlay>
       </OpacityAnimation>
     </Box>
   )

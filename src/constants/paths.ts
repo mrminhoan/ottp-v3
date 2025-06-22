@@ -18,5 +18,12 @@ export const PATHS = {
     LIST: '/users/list',
     TRANSACTION: '/users/transaction'
   },
-  LOGIN: '/login'
+  LOGIN: '/login',
+  EXTERNAL: {
+    ROOT: '/external',
+    SHOP: {
+      ROOT: '/external/shop',
+      BASIC_INFO: '/external/shop/basic-info'
+    }
+  }
 }

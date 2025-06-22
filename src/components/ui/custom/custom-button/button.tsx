@@ -35,6 +35,8 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
   ) => {
     const Comp = asChild ? Slot : 'button'
     const isDisabled = disabled || loading
+    const isFilter = className?.includes('filter')
+    const heightClass = isFilter ? 'h-7' : 'h-8'
 
     const LeftIcon = icon
     const RightIcon = iconRight
@@ -43,7 +45,7 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       <Comp
         ref={ref}
         data-slot='button'
-        className={cn(buttonVariants({ variant, size }), className, 'relative rounded-sm')}
+        className={cn(buttonVariants({ variant, size }), className, `relative rounded-md ${heightClass}`)}
         disabled={isDisabled}
         type={type}
         {...props}

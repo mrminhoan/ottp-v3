@@ -42,7 +42,7 @@
   --font-sans: Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-mono: monospace;
-  --radius: 0.5rem;
+  --radius: 1.2rem;
   --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
@@ -114,7 +114,6 @@
   --font-sans: Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-mono: monospace;
-  --radius: 0.5rem;
   --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
@@ -139,8 +138,41 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Scrollbar styles */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--muted); /* Light mode track */
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--border); /* Light mode thumb */
+  }
+
+  html.dark *::-webkit-scrollbar-track {
+    background: var(--surface-muted); /* Dark mode track */
+  }
+
+  html.dark *::-webkit-scrollbar-thumb {
+    background-color: var(--muted-foreground); /* Dark mode thumb */
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--muted); /* thumb track */
+  }
+
+  html.dark * {
+    scrollbar-color: var(--muted-foreground) var(--surface-muted);
   }
 }
 

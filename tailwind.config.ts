@@ -71,6 +71,12 @@ export default {
         disabled: 'var(--disabled)',
         label: 'var(--label)'
       },
+      borderRadius: {
+        lg: 'calc(var(--radius) - 12px)',
+        md: 'calc(var(--radius) - 14px)',
+        sm: 'calc(var(--radius) - 16px)',
+        xs: 'calc(var(--radius) - 18px)'
+      },
       backgroundImage: {
         'info-gradient': 'var(--info-gradient)',
         'warning-gradient': 'var(--warning-gradient)',

@@ -1,5 +1,4 @@
-const UserList = () => {
+export default function UserList() {
   return <div>UserList</div>
 }
 
-export default UserList

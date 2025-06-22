@@ -22,7 +22,6 @@ export const ImageCdn: FC<IProps> = ({
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(false)
 
-  // Xử lý src final
   const getFinalSrc = () => {
     if (!isCdn) return src
     if (src.startsWith('http') || src.startsWith('//')) return src

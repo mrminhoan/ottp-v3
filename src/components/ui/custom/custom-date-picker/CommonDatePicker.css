@@ -1,0 +1,12 @@
+.mbsc-ios.mbsc-textfield-wrapper-box,
+.mbsc-ios.mbsc-textfield-wrapper-outline {
+  margin: 0 !important;
+}
+
+.mbsc-ios.mbsc-textfield-outline {
+  border-radius: 6px;
+}
+
+.mbsc-ios.mbsc-textfield-outline {
+  box-shadow: 0px 1px 2px 0px #0000000d;
+}

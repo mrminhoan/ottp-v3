@@ -20,13 +20,26 @@ const ShopDepositLoadCore = LoadedAleCore(() => import('@/pages/shop/deposit/sho
 const ShopWithdrawalLoadCore = LoadedAleCore(() => import('@/pages/shop/withdrawal/shop-withdrawal'))
 
 // Main Users
-// const UserListLoadCore = LoadedAleCore(() => import('@/pages/users/list/user-list'))
-// const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
+const UserListLoadCore = LoadedAleCore(() => import('@/pages/users/list/user-list'))
+const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
+
+
+
+
+
+// External
+const ExternalPageLoadCore = LoadedAleCore(() => import('@/pages/external/external-page'))
+// Shop
+const ExternalShopPage = LoadedAleCore(() => import('@/pages/external/shop/external-shop-page'))
+const ShopBasicInfoLoadCore = LoadedAleCore(() => import('@/pages/external/shop/basic-info/basic-info'))
+
+
 
 // Common
 const LoginLoadCore = LoadedAleCore(() => import('@/pages/login/login'))
 const NotFoundLoadCore = LoadedAleCore(() => import('@/pages/common/not-found'))
 const ErrorPageLoadCore = LoadedAleCore(() => import('@/pages/common/error'))
+
 
 const routes: Partial<TMenu>[] = [
   {
@@ -97,11 +110,64 @@ const routes: Partial<TMenu>[] = [
         ]
       },
       {
+        path: PATHS.USERS.ROOT,
+        meta: { title: 'Users', icon: Users },
+        children: [
+          {
+            path: '',
+            to: PATHS.USERS.LIST,
+            element: <GuardProtectRoute component={<UserListLoadCore />} />
+          },
+          {
+            path: PATHS.USERS.LIST,
+            element: <GuardProtectRoute component={<UserListLoadCore />} />,
+            meta: { title: 'User List' }
+          },
+          {
+            path: PATHS.USERS.TRANSACTION,
+            element: <GuardProtectRoute component={<UserTransactionLoadCore />} />,
+            meta: { title: 'Transaction' }
+          }
+        ]
+      },
+
+
+      {
         path: '*',
         element: <NotFoundLoadCore />
       }
     ]
   },
+
+
+  {
+    path: PATHS.EXTERNAL.ROOT,
+    element: (
+      <ErrorBoundary fallback={<ErrorPageLoadCore />}>
+        <ExternalPageLoadCore />
+      </ErrorBoundary>
+    ),
+    children: [
+      {
+        path: PATHS.EXTERNAL.SHOP.ROOT,
+        // to: PATHS.EXTERNAL.SHOP.BASIC_INFO,
+        element: <GuardProtectRoute component={<ExternalShopPage />} />,
+        children: [
+          {
+            path: '',
+            to: PATHS.EXTERNAL.SHOP.BASIC_INFO,
+            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />
+          },
+          {
+            path: PATHS.EXTERNAL.SHOP.BASIC_INFO,
+            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+            meta: { title: 'Shop Basic Info' }
+          }
+        ]
+      }
+    ]
+  },
+
   {
     path: PATHS.LOGIN,
     element: (
