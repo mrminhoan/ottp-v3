@@ -13,6 +13,8 @@ interface ActionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   size?: VariantProps<typeof buttonVariants>['size']
   loading?: boolean
   disabled?: boolean
+  iconSize?: number
+  asChild?: boolean
 }
 
 const actionMap: Record<ActionType, { icon: React.ElementType; label: string }> = {
@@ -34,7 +36,7 @@ const variantMap: Record<ActionType, VariantProps<typeof buttonVariants>['varian
 }
 
 export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
-  ({ action, variant, size = 'icon', loading, disabled, ...props }, ref) => {
+  ({ action, variant, size = 'icon', loading, disabled, iconSize = 16, asChild, ...props }, ref) => {
     const { icon: Icon, label } = actionMap[action]
     const finalVariant = variant ?? variantMap[action]
 
@@ -50,6 +52,9 @@ export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProp
               disabled={disabled}
               icon={Icon}
               type="button"
+              iconSize={iconSize}
+              className='px-2 py-1'
+              asChild={asChild}
               {...props}
             />
           </TooltipTrigger>

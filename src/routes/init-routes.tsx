@@ -21,8 +21,8 @@ const ShopWithdrawalLoadCore = LoadedAleCore(() => import('@/pages/shop/withdraw
 
 // Main Users
 const UserListLoadCore = LoadedAleCore(() => import('@/pages/users/list/user-list'))
-const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
-
+// const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
+const UserDepositLoadCore = LoadedAleCore(() => import('@/pages/users/deposit/deposit'))
 
 
 
@@ -124,9 +124,9 @@ const routes: Partial<TMenu>[] = [
             meta: { title: 'User List' }
           },
           {
-            path: PATHS.USERS.TRANSACTION,
-            element: <GuardProtectRoute component={<UserTransactionLoadCore />} />,
-            meta: { title: 'Transaction' }
+            path: PATHS.USERS.DEPOSIT,
+            element: <GuardProtectRoute component={<UserDepositLoadCore />} />,
+            meta: { title: 'Deposit' }
           }
         ]
       },

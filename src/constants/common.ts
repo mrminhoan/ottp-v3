@@ -30,11 +30,7 @@ export enum BLOCKCHAIN_NETWORK {
   TRON = 'TRON'
 }
 
-export enum STATUS_TRANSACTION {
-  pending = 'pending',
-  completed = 'completed',
-  canceled = 'canceled'
-}
+
 
 export const SYMBOL_CURRENCY = {
   WON: ' 원',
@@ -42,4 +38,35 @@ export const SYMBOL_CURRENCY = {
   TETHER: ' T',
   MAIN: ' 원',
   PERCENT: ' %'
+}
+
+export enum BANK_TYPE {
+  BANK = 1,
+  PAYPAL = 2,
+  KAKAO = 3
+}
+
+export enum BANK_TYPE_NAME {
+  KakaoPay = 'KakaoPay',
+  PayPal = 'PayPal',
+  Bank = 'Bank'
+}
+
+export enum PROCESS_STATUS_TYPE {
+  COMPLETED = 'completed',
+  CANCEL = 'cancel',
+  PENDING = 'pending'
+}
+
+export enum STATUS_TRANSACTION {
+  pending = 'pending',
+  completed = 'completed',
+  canceled = 'canceled'
+}
+
+export enum STATUS_TYPE {
+  SUCCESS = 'success',
+  INFO = 'info',
+  WARNING = 'warning',
+  ERROR = 'error'
 }

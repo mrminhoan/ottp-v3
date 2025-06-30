@@ -44,8 +44,9 @@ const RootPicker = ({ size = 'medium', inputProps = {}, ...props }) => {
           minWidth: '19rem',
           fontSize: '0.875rem',
           height: '2rem',
-          borderRadius: '3px',
-          border: 'none'
+          borderRadius: '5px',
+          borderWidth: '1px',
+          borderColor: 'var(--border)'
         }
       }}
       {...props}

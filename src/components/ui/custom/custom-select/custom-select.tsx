@@ -11,7 +11,7 @@ interface IOption {
 
 interface IProps {
   options: IOption[]
-  value: string
+  value?: string
   onChange?: (value: string | number | null) => void
   placeholder?: string
   className?: string
@@ -45,12 +45,12 @@ export const CustomSelect = (props: IProps) => {
       <Select onValueChange={onValueChange} value={value} disabled={disabled} defaultValue={value}>
         <div
           className={cn(
-            'min-w-[5rem] h-9 flex items-center justify-between gap-2 border border-border rounded-xs outline-none ',
+            'min-w-[5rem] h-9 flex items-center justify-between gap-2 border border-border rounded-md outline-none',
             className
           )}
         >
           <SelectTrigger
-            className={cn('w-full border-none shadow-none outline-none focus:ring-0 focus:ring-offset-0', classNameTrigger)}
+            className={cn('w-full border-none shadow-none outline-none focus:ring-0 focus:ring-offset-0 text-xs', classNameTrigger)}
             disabled={disabled}
           >
             <SelectValue placeholder={placeholder} />

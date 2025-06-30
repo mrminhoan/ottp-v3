@@ -51,7 +51,7 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
 
   const btnClass = (disabled: boolean) =>
     cn(
-      'px-2 rounded-xs text-white font-medium cursor-pointer text-xs py-1 px-2 bg-background shadow-sm text-black transition-opacity duration-200 rounded-sm',
+      'px-2 rounded-xs text-white font-medium cursor-pointer text-xs py-1 px-2 bg-background shadow-sm text-foreground transition-opacity duration-200 rounded-sm',
       disabled ? 'opacity-30' : ' hover:opacity-70'
     )
 
@@ -77,7 +77,7 @@ function CustomPagination({ classNameContainer, totalItems = 100, totalPages }: 
                   setPage(page)
                 }}
                 className={cn(
-                  'px-3 rounded-xs text-white font-medium cursor-pointer hover:opacity-85 text-md rounded-sm transition-colors duration-200',
+                  'px-3  text-white font-medium cursor-pointer hover:opacity-85 text-md rounded-sm transition-colors duration-200',
                   active === page ? 'bg-[black]/80' : 'text-black'
                 )}
               >

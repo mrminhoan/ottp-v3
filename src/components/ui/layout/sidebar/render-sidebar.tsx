@@ -64,7 +64,7 @@ export function RenderSidebar({ routes }: IProps) {
             <AccordionButton>
               <SidebarMenuButton
                 tooltip={title}
-                className={cn('transition-all duration-200 rounded-md', isParentActive && 'bg-primary')}
+                className={cn('transition-all duration-200 rounded-md', isParentActive && 'bg-primary shadow-md')}
                 asChild
               >
                 <div>

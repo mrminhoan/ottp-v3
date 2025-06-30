@@ -19,6 +19,7 @@ import SelectTimezone from '@/shared/components/selects/select-time-zome'
 import LanguageMenu from '@/shared/components/selects/select-language'
 import { useState } from 'react'
 import { Separator } from '@/components/ui/separator'
+import { Spinner } from '@/components/ui/spinner'
 
 interface IProps {
   routes: Partial<TMenu>
@@ -31,7 +32,6 @@ function MainSidebar(props: IProps) {
   const { open } = useSidebar()
   const shopStore = useShopStore()
 
-
   return (
     <Sidebar collapsible='icon' variant='inset'>
       <SidebarHeader>
@@ -40,10 +40,12 @@ function MainSidebar(props: IProps) {
           <SidebarTrigger />
         </div>
 
-        {
-          open && (
-            <DropdownMenu open={isOpenProfile} onOpenChange={setIsOpenProfile}>
-              <DropdownMenuTrigger asChild>
+        {open && (
+          <DropdownMenu open={isOpenProfile} onOpenChange={setIsOpenProfile}>
+            <DropdownMenuTrigger asChild>
+              {!shopStore.shop_name ? (
+                <Spinner />
+              ) : (
                 <div className='flex items-center gap-2 justify-between'>
                   <div className='flex items-center gap-2'>
                     <Avatar src={avatar} title='John Doe' className='h-8 w-8' />
@@ -53,21 +55,22 @@ function MainSidebar(props: IProps) {
                     </div>
                   </div>
 
-                  <ChevronDownIcon className={`ml-2 h-4 w-4 transition-transform duration-200 ${isOpenProfile ? 'rotate-[-90deg]' : ''}`} />
+                  <ChevronDownIcon
+                    className={`ml-2 h-4 w-4 transition-transform duration-200 ${isOpenProfile ? 'rotate-[-90deg]' : ''}`}
+                  />
                 </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side='right' className='flex flex-col gap-2'>
-                <SelectTimezone />
-                <LanguageMenu className='bg-background' isShowLabel={true} />
-                <ModeToggle />
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-          )
-        }
+              )}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side='right' className='flex flex-col gap-2'>
+              <SelectTimezone />
+              <LanguageMenu className='bg-background' isShowLabel={true} />
+              <ModeToggle />
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </SidebarHeader>
 
-      <Separator className='mb-5'/>
+      <Separator className='mb-5' />
 
       <SidebarContent className='px-2'>
         <RenderSidebar routes={routes.children} />
@@ -79,10 +82,12 @@ function MainSidebar(props: IProps) {
 
 export default MainSidebar
 
-{/* <div className='flex items-center gap-2'>
+{
+  /* <div className='flex items-center gap-2'>
 <Avatar src={avatar} title='John Doe' className='h-8 w-8' />
 <div>
   <p className='text-xs font-semibold'>{shopStore.shop_name}</p>
   <p className='text-xs text-muted-foreground'>({shopStore.username})</p>
 </div>
-</div> */}
+</div> */
+}

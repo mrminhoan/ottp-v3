@@ -15,7 +15,7 @@ export const useCustomQuery = <T, P>(parameter?: IParameter<T, P, 'query'>): TRe
       queryKey,
       payload
     }),
-    // staleTime: 5 * 60 * 1000,
+    staleTime: 5 * 60 * 1000,
     queryFn: () => fetcher(props),
     
   })

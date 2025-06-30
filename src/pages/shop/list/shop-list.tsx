@@ -29,6 +29,7 @@ import { CreateForm } from './form/create-form'
 import { PATHS } from '@/constants/paths'
 import { LoadingOverlay } from '@/components/ui/custom/custom-loading'
 import { FilterBox } from './filter/filter'
+import { CustomDateTime } from '@/shared/components/custom-date-time'
 
 const ShopList = () => {
   const dialog = useGlobalDialog()
@@ -67,7 +68,7 @@ const ShopList = () => {
                   <ChevronDownIcon className='ml-2 h-4 w-4' />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className='w-[20rem] bg-surface'>
+              <DropdownMenuContent className='w-[20rem] '>
                 <DropdownMenuLabel>
                   <div className='flex flex-col gap-2'>
                     <div className='flex items-center gap-2 justify-between'>
@@ -215,7 +216,7 @@ const ShopList = () => {
           return (
             <div className='flex overflow-hidden rounded w-full'>
               <KeyValueComp title='Register'>
-                <CustomFormatNumber value={row.original.commission_rate_withdraw} suffix={SYMBOL_CURRENCY.PERCENT} />
+                <CustomDateTime date={row.original.created_at} className='text-xs font-bold' />
               </KeyValueComp>
             </div>
           )
@@ -241,7 +242,11 @@ const ShopList = () => {
   return (
     <Box>
       <div className='flex items-center justify-between mb-4'>
-        <FilterBox className='flex-1 w-full' onSearch={handleParamSearchChange} onReset={() => setParamSearch(new ShopSearchModel())} />
+        <FilterBox
+          className='flex-1 w-full'
+          onSearch={handleParamSearchChange}
+          onReset={() => setParamSearch(new ShopSearchModel())}
+        />
         <ActionButton action='add' onClick={handleOpenDialog}>
           New Shop
         </ActionButton>

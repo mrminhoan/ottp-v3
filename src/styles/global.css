@@ -65,6 +65,15 @@
   --info-gradient: linear-gradient(to right, #8bbcff, #66aaff);
   --warning-gradient: linear-gradient(to right, #ffdf80, #ffd24d);
 
+  --pending-gradient: linear-gradient(to right, #f5c144, #d48806);
+  --canceled-gradient: linear-gradient(to right, #bdbdbd, #9e9e9e);
+
+  /* Payment method */
+  --kakao-gradient: linear-gradient(to right, #ffb300, #ffca28);
+  --paypal-gradient: linear-gradient(to right, #0070ba, #003087);
+  --paypal-gradient-bg: linear-gradient(to right, #259cdb, #0070ba, #003087);
+  --bank-gradient: linear-gradient(to right, #a27c7c, #000000);
+
   /* role */
   --color-user-gradient: linear-gradient(to right, #6366f1, #4f46e5);
   --color-seller-gradient: linear-gradient(to right, #34d399, #10b981);
@@ -72,6 +81,7 @@
   --color-deposit-gradient: linear-gradient(to right, #60a5fa, #3b82f6);
   --color-withdrawal-gradient: linear-gradient(to right, #f87171, #ef4444);
   --color-tether-gradient: linear-gradient(to right, #2dd4bf, #14b8a6);
+  --color-main-currency-gradient: linear-gradient(to right, #b1e4ff, #4fc3f7);
 }
 
 .dark {
@@ -79,11 +89,11 @@
 
   --background: #121212;
   --foreground: #e2e8f0;
-  --surface: #1e1e1e;
+  --surface: #242424;
   --surface-muted: #2a2a2a;
   --card: #171717;
   --card-foreground: #e2e8f0;
-  --popover: #242424;
+  --popover: #1e1e1e;
   --popover-foreground: #a9a9a9;
   --primary: #006239;
   --primary-foreground: #dde8e3;

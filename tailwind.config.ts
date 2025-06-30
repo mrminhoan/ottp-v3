@@ -82,12 +82,23 @@ export default {
         'warning-gradient': 'var(--warning-gradient)',
         'success-gradient': 'var(--success-gradient)',
         'error-gradient': 'var(--error-gradient)',
+
+        'pending-gradient': 'var(--pending-gradient)',
+        'canceled-gradient': 'var(--canceled-gradient)',
+
         user: 'var(--color-user-gradient)',
         seller: 'var(--color-seller-gradient)',
         shop: 'var(--color-shop-gradient)',
+        
         deposit: 'var(--color-deposit-gradient)',
         withdrawal: 'var(--color-withdrawal-gradient)',
-        tether: 'var(--color-tether-gradient)'
+        tether: 'var(--color-tether-gradient)',
+        'main-currency': 'var(--color-main-currency-gradient)',
+
+        'kakao-gradient': 'var(--kakao-gradient)',
+        'paypal-gradient': 'var(--paypal-gradient)',
+        'paypal-gradient-bg': 'var(--paypal-gradient-bg)',
+        'bank-gradient': 'var(--bank-gradient)'
       }
     },
     colors: {}

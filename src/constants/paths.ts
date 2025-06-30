@@ -16,7 +16,8 @@ export const PATHS = {
   USERS: {
     ROOT: '/users',
     LIST: '/users/list',
-    TRANSACTION: '/users/transaction'
+    TRANSACTION: '/users/transaction',
+    DEPOSIT: '/users/deposit'
   },
   LOGIN: '/login',
   EXTERNAL: {

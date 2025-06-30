@@ -7,7 +7,7 @@ const TableCell = React.forwardRef<
 >((props, ref) => {
   const { className, children, ...rest } = props
   return (
-    <td ref={ref} className={cn('py-2 text-center', className)} {...rest}>
+    <td ref={ref} className={cn('py-4 text-center', className)} {...rest}>
       <div>{children}</div>
     </td>
   )

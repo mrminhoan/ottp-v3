@@ -19,7 +19,6 @@ export const MainLayout = () => {
     fetcher: CommonService.getMe,
     props: {
       onSuccess: (data) => {
-        console.log(data?.data)
         handleSetMe(data?.data?.data || {})
         return data
       },

@@ -13,6 +13,8 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   icon?: React.ElementType
   iconRight?: React.ElementType
   classNameContent?: string
+  classNameIcon?: string
+  iconSize?: number
 }
 
 export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
@@ -29,6 +31,8 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       disabled,
       type = 'button',
       classNameContent,
+      classNameIcon,
+      iconSize = 16,
       ...props
     },
     ref
@@ -45,31 +49,32 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       <Comp
         ref={ref}
         data-slot='button'
-        className={cn(buttonVariants({ variant, size }), className, `relative rounded-md ${heightClass}`)}
         disabled={isDisabled}
         type={type}
         {...props}
       >
-        {loading && (
-          <div className='absolute inset-0 flex items-center justify-center'>
-            <Loader2 className='h-4 w-4 animate-spin' />
+        <div className={cn(buttonVariants({ variant, size }), className, `relative rounded-md ${heightClass}`)}>
+          {loading && (
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <Loader2 className='h-4 w-4 animate-spin' />
+            </div>
+          )}
+
+          <div className={cn('flex items-center justify-center  gap-2 w-full', loading && 'invisible')}>
+            {LeftIcon && (
+              <span className='inline-flex items-center justify-center w-full'>
+                <LeftIcon size={iconSize} className={cn('align-middle', classNameIcon)} />
+              </span>
+            )}
+
+            {children ? <span className={cn('text-xs font-medium', classNameContent)}>{children}</span> : null}
+
+            {RightIcon && (
+              <span className='inline-flex items-center justify-center w-full'>
+                <RightIcon size={iconSize} className={cn('align-middle', classNameIcon)} />
+              </span>
+            )}
           </div>
-        )}
-
-        <div className={cn('flex items-center justify-center  gap-2 w-full', loading && 'invisible')}>
-          {LeftIcon && (
-            <span className='inline-flex items-center justify-center w-full'>
-              <LeftIcon size={16} className='align-middle' />
-            </span>
-          )}
-
-          {children ? <span className={cn('text-xs font-medium', classNameContent)}>{children}</span> : null}
-
-          {RightIcon && (
-            <span className='inline-flex items-center justify-center w-full'>
-              <RightIcon size={16} className='align-middle' />
-            </span>
-          )}
         </div>
       </Comp>
     )
