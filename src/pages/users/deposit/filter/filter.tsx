@@ -51,7 +51,7 @@ export default function FilterBox(props: IProps) {
     <div className={cn('py-1 flex items-center gap-2 flex-wrap', className)}>
       <CustomInput
         placeholder='Search by transaction id/user name'
-        className='w-[20rem]'
+        className='w-[20rem] placeholder:text-sm'
         value={filter.search}
         onChange={(e) => handleChangeFilter({ search: e.target.value })}
       />

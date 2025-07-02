@@ -39,7 +39,7 @@ export const CustomStatusFilter = ({ status, onChange }: IProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className='text-xs text-muted-foreground w-fit border border-dashed border-border rounded-md h-8 flex items-center justify-center px-3'>
+        <div className='text-sm text-muted-foreground w-fit border border-dashed border-border rounded-md h-8 flex items-center justify-center px-3'>
           <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className='flex items-center gap-2'>
             <div className='flex items-center gap-2 px-2'>
               <FunnelPlus className='w-3 h-3' />
