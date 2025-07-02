@@ -70,3 +70,5 @@ export enum STATUS_TYPE {
   WARNING = 'warning',
   ERROR = 'error'
 }
+
+export type TYPE_STATUS_ACCOUNT = 'active' | 'inactive' | 'pending' | 'banned' | 'deleted'
