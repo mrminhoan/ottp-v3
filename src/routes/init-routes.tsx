@@ -1,6 +1,6 @@
 import { PATHS } from '@/constants'
 import { LoadedAleCore } from '@/lib/loaded-ale-core'
-import { Store, Users } from 'lucide-react'
+import { ScrollText, ShoppingCart, Store, Users } from 'lucide-react'
 import { TMenu } from '@/models/types'
 import { ErrorBoundary } from 'react-error-boundary'
 import { GuardProtectRoute } from './protected-route/guard-protect'
@@ -24,22 +24,16 @@ const UserListLoadCore = LoadedAleCore(() => import('@/pages/users/list/user-lis
 // const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
 const UserDepositLoadCore = LoadedAleCore(() => import('@/pages/users/deposit/deposit'))
 
-
-
-
 // External
 const ExternalPageLoadCore = LoadedAleCore(() => import('@/pages/external/external-page'))
 // Shop
 const ExternalShopPage = LoadedAleCore(() => import('@/pages/external/shop/external-shop-page'))
 const ShopBasicInfoLoadCore = LoadedAleCore(() => import('@/pages/external/shop/basic-info/basic-info'))
 
-
-
 // Common
 const LoginLoadCore = LoadedAleCore(() => import('@/pages/login/login'))
 const NotFoundLoadCore = LoadedAleCore(() => import('@/pages/common/not-found'))
 const ErrorPageLoadCore = LoadedAleCore(() => import('@/pages/common/error'))
-
 
 const routes: Partial<TMenu>[] = [
   {
@@ -131,14 +125,12 @@ const routes: Partial<TMenu>[] = [
         ]
       },
 
-
       {
         path: '*',
         element: <NotFoundLoadCore />
       }
     ]
   },
-
 
   {
     path: PATHS.EXTERNAL.ROOT,
@@ -161,7 +153,31 @@ const routes: Partial<TMenu>[] = [
           {
             path: PATHS.EXTERNAL.SHOP.BASIC_INFO,
             element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
-            meta: { title: 'Shop Basic Info' }
+            meta: { title: 'Shop Basic Info', icon: ShoppingCart }
+          },
+          {
+            path: PATHS.EXTERNAL.SHOP.USERS,
+            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+            meta: { title: 'Users', icon: Users }
+          },
+          {
+            path: PATHS.EXTERNAL.SHOP.LOG.ROOT,
+            to: PATHS.EXTERNAL.SHOP.LOG.SHOP_TRANSACTION,
+            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+            meta: { title: 'Log', icon: ScrollText },
+            children: [
+              {
+                path: '',
+                to: PATHS.EXTERNAL.SHOP.LOG.SHOP_TRANSACTION,
+                element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+                meta: { title: 'Shop Transaction' }
+              },
+              {
+                path: PATHS.EXTERNAL.SHOP.LOG.USER_TRANSACTION,
+                element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+                meta: { title: 'User Transaction' }
+              }
+            ]
           }
         ]
       }

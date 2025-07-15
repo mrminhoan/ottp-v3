@@ -82,12 +82,3 @@ function MainSidebar(props: IProps) {
 
 export default MainSidebar
 
-{
-  /* <div className='flex items-center gap-2'>
-<Avatar src={avatar} title='John Doe' className='h-8 w-8' />
-<div>
-  <p className='text-xs font-semibold'>{shopStore.shop_name}</p>
-  <p className='text-xs text-muted-foreground'>({shopStore.username})</p>
-</div>
-</div> */
-}

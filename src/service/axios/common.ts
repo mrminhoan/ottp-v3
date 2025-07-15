@@ -36,7 +36,6 @@ export const BaseService = {
       })
       .then(async (res) => {
         let dataMapping: any = mockData ? mockData : res.data
-        // let dataMapping: any = mockData
         if (toResponse) {
           if (Array.isArray(dataMapping)) {
             dataMapping = dataMapping.map((item) => toResponse(item))

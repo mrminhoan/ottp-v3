@@ -103,7 +103,7 @@ const ShopList = () => {
                     window.open(
                       `${PATHS.EXTERNAL.SHOP.BASIC_INFO}?id=${data?.id}`,
                       'shop-detail',
-                      'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
+                      // 'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
                     )
                   }}
                 >

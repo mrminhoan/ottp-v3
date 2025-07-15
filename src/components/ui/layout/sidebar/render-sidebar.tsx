@@ -1,5 +1,4 @@
 'use client'
-
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -35,16 +34,21 @@ export function RenderSidebar({ routes }: IProps) {
   const renderMenuItem = (item: Partial<TMenu>) => {
     const url = item.to || item.path
     const title = item.meta?.title
+    const Icon = item.meta?.icon as any
+
     if (!title) return null
 
     const isActive = isActiveLink(url)
-
+    const to = url + location.search
     return (
       <SidebarMenuSubItem key={url}>
         <SidebarMenuSubButton asChild>
-          <Link to={url} className={cn('transition-all duration-200', isActive && 'font-bold')}>
-            <span>{title}</span>
-          </Link>
+          <div>
+            {Icon && <Icon className={cn('w-4 h-4 mr-2')} />}
+            <Link to={to} className={cn('transition-all duration-200 w-full', isActive && 'font-bold')}>
+              <span>{title}</span>
+            </Link>
+          </div>
         </SidebarMenuSubButton>
       </SidebarMenuSubItem>
     )
@@ -64,7 +68,10 @@ export function RenderSidebar({ routes }: IProps) {
             <AccordionButton>
               <SidebarMenuButton
                 tooltip={title}
-                className={cn('transition-all duration-200 rounded-md', isParentActive && 'bg-primary shadow-md')}
+                className={cn(
+                  'transition-all duration-200 rounded-md',
+                  isParentActive && 'bg-primary shadow-md text-[#111827] font-bold dark:text-white'
+                )}
                 asChild
               >
                 <div>
@@ -93,6 +100,8 @@ export function RenderSidebar({ routes }: IProps) {
     <SidebarMenu>
       {filteredRoutes.map((route) => {
         const title = route.meta?.title
+        const Icon = route.meta?.icon as any
+
         if (!title) return null
 
         if (route.path === '' && route.children?.length) {
@@ -104,14 +113,22 @@ export function RenderSidebar({ routes }: IProps) {
         }
 
         const isActive = isActiveLink(route.path)
+
+        const to = (route.to || route.path || '') + location.search
+
         return (
           <SidebarMenuItem key={route.path}>
             <SidebarMenuButton
               asChild
               tooltip={title}
-              className={cn('transition-all duration-200 rounded-md', isActive && 'bg-primary')}
+              className={cn(
+                'transition-all duration-200 rounded-md',
+                isActive && 'bg-primary text-[#111827] font-bold',
+                'dark:text-white'
+              )}
             >
-              <Link to={route.to || route.path}>
+              <Link to={to}>
+                {Icon && <Icon className={cn('w-4 h-4 mr-2')} />}
                 <span>{title}</span>
               </Link>
             </SidebarMenuButton>

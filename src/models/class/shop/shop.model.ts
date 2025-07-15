@@ -1,6 +1,6 @@
 import { BaseModel } from '../base.model'
 import { BaseSearchModel } from '../search/base-search-model'
-import { BLOCKCHAIN_NETWORK, STATUS_TRANSACTION } from '@/constants'
+import { BLOCKCHAIN_NETWORK, STATUS_ENDPOINT, STATUS_TRANSACTION } from '@/constants'
 
 export class ShopModel extends BaseModel {
   username: string
@@ -19,7 +19,7 @@ export class ShopModel extends BaseModel {
   commission_paid: number
   deposit_transaction_count: number
   endpoint_registered_at: string
-  endpoint_status: string
+  endpoint_status: STATUS_ENDPOINT
   endpoint_url: string
   parent_shop_id: number
   total_deposit: number

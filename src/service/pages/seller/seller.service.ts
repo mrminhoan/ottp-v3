@@ -2,11 +2,6 @@ import { BaseService } from '@/service/axios/common'
 import { SellerModel, SellerSearchModel } from '@/models/class/seller/seller.model'
 import { API } from '@/constants'
 import { IApiRequest } from '@/models/interface/api-request-model'
-// import { ExternalStore } from '@/service/axios/pages/external/external-store'
-
-// const getShareId = () => {
-//   return Number(ExternalStore.getShareId())
-// }
 
 export const SellerService = {
   getList(request: Partial<IApiRequest<SellerSearchModel>>) {

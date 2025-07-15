@@ -24,7 +24,13 @@ export const PATHS = {
     ROOT: '/external',
     SHOP: {
       ROOT: '/external/shop',
-      BASIC_INFO: '/external/shop/basic-info'
+      BASIC_INFO: '/external/shop/basic-info',
+      USERS: '/external/shop/users',
+      LOG: {
+        ROOT: '/external/shop/log',
+        SHOP_TRANSACTION: '/external/shop/log/shop-transaction',
+        USER_TRANSACTION: '/external/shop/log/user-transaction'
+      }
     }
   }
 }

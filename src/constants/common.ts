@@ -30,8 +30,6 @@ export enum BLOCKCHAIN_NETWORK {
   TRON = 'TRON'
 }
 
-
-
 export const SYMBOL_CURRENCY = {
   WON: ' 원',
   USD: ' $',
@@ -69,6 +67,11 @@ export enum STATUS_TYPE {
   INFO = 'info',
   WARNING = 'warning',
   ERROR = 'error'
+}
+
+export enum STATUS_ENDPOINT {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
 }
 
 export type TYPE_STATUS_ACCOUNT = 'active' | 'inactive' | 'pending' | 'banned' | 'deleted'
