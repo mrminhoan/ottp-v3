@@ -10,7 +10,6 @@ import { Outlet, useSearchParams } from 'react-router-dom'
 import { RenderUserInfo } from './render-user-info'
 
 export default function ExternalShopPage() {
-  // Get id from query string, e.g. /external/shop/basic-info?id=19
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
@@ -38,7 +37,6 @@ export default function ExternalShopPage() {
     <>
       <SubSidebar routes={routes[1]['children'][0]} userInfo={UserInfo} />
       <SidebarInset className='overflow-hidden '>
-        {/* <MainHeader /> */}
         <div className='container'>
           <Outlet />
         </div>

@@ -6,7 +6,6 @@ interface IProps {
   data: ShopModelResponse
 }
 
-// Giảm thời gian delay và stagger để hiện nhanh hơn
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
