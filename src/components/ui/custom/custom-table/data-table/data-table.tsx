@@ -8,6 +8,7 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 import React, { CSSProperties, Fragment, useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 // import CustomPagination from "../custom-pagination/custom-pagination";
 import { DataTableProvider } from '@/context/data-table.provider'
 import { Table } from '../main-table'
@@ -159,7 +160,10 @@ function DataTable<T>(props: IDataTableProps<T>) {
   return (
     <>
       <DataTableProvider useTable={useTable} paramSearch={paramSearch} onTableChange={onTableChange}>
-        <div style={{ ...columnSizeVars }} className={cn('w-full overflow-y-auto  max-h-[700px] bg-surface border-t border-border', wrapperClassName)}>
+        <div
+          style={{ ...columnSizeVars }}
+          className={cn('w-full overflow-y-auto  max-h-[700px] bg-surface border-t border-border', wrapperClassName)}
+        >
           <Table className='w-full min-w-full'>
             <Table.Head className='sticky top-0 z-20 '>
               {useTable.getHeaderGroups().map((headerGroup) => {
@@ -237,12 +241,41 @@ function DataTable<T>(props: IDataTableProps<T>) {
                           </Table.Cell>
                         ))}
                       </Table.Row>
-                      {row.getIsExpanded() && (
-                        <Table.Row>
-                          {/* 2nd row is a custom 1 cell row */}
-                          <Table.Cell colSpan={row.getVisibleCells().length}>{renderSubComponent({ row })}</Table.Cell>
-                        </Table.Row>
-                      )}
+                      <AnimatePresence mode='wait'>
+                        {row.getIsExpanded() && (
+                          <motion.tr
+                            key={`${row.id}-expanded`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                              duration: 0.2,
+                              opacity: { duration: 0.15 }
+                            }}
+                            className='hover:bg-surface-muted transition-colors duration-200'
+                          >
+                            <Table.Cell
+                              colSpan={row.getVisibleCells().length}
+                              className='p-0 border-b border-x border-border'
+                            >
+                              <motion.div
+                                initial={{ maxHeight: 0, opacity: 0 }}
+                                animate={{ maxHeight: 1000, opacity: 1 }}
+                                exit={{ maxHeight: 0, opacity: 0 }}
+                                transition={{
+                                  duration: 0.4,
+                                  ease: [0.04, 0.62, 0.23, 0.98],
+                                  maxHeight: { duration: 0.4 },
+                                  opacity: { duration: 0.2, delay: 0.1 }
+                                }}
+                                style={{ overflow: 'hidden' }}
+                              >
+                                <div className='px-4 py-3'>{renderSubComponent({ row })}</div>
+                              </motion.div>
+                            </Table.Cell>
+                          </motion.tr>
+                        )}
+                      </AnimatePresence>
                     </Fragment>
                   )
                 })

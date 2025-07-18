@@ -22,11 +22,11 @@ function SubSidebar(props: IProps) {
 
   return (
     <Sidebar collapsible='icon' variant='inset'>
-      <div className='flex justify-center items-center mb-4'>
+      <div className={`flex items-center mb-4 ${open ? 'justify-end' : 'justify-center'}`}>
         <SidebarTrigger />
       </div>
 
-      <div className='px-4 relative overflow-hidden'>
+      <div className='relative overflow-hidden'>
         <AnimatePresence mode="wait">
           {open && (
             <motion.div

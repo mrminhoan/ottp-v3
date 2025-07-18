@@ -12,6 +12,7 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   loading?: boolean
   icon?: React.ElementType
   iconRight?: React.ElementType
+  classNameContainer?: string
   classNameContent?: string
   classNameIcon?: string
   iconSize?: number
@@ -28,11 +29,12 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
       icon,
       iconRight,
       children,
-      disabled,
       type = 'button',
       classNameContent,
       classNameIcon,
       iconSize = 16,
+      disabled,
+      classNameContainer,
       ...props
     },
     ref
@@ -44,15 +46,8 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProp
 
     const LeftIcon = icon
     const RightIcon = iconRight
-
     return (
-      <Comp
-        ref={ref}
-        data-slot='button'
-        disabled={isDisabled}
-        type={type}
-        {...props}
-      >
+      <Comp ref={ref} data-slot='button' disabled={isDisabled} type={type} {...props} className={classNameContainer}>
         <div className={cn(buttonVariants({ variant, size }), className, `relative rounded-md ${heightClass}`)}>
           {loading && (
             <div className='absolute inset-0 flex items-center justify-center'>

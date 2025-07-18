@@ -50,6 +50,12 @@ export enum BANK_TYPE_NAME {
   Bank = 'Bank'
 }
 
+export const BANK_TYPE_OPTIONS = [
+  { value: BANK_TYPE.BANK, label: BANK_TYPE_NAME.Bank },
+  { value: BANK_TYPE.PAYPAL, label: BANK_TYPE_NAME.PayPal },
+  { value: BANK_TYPE.KAKAO, label: BANK_TYPE_NAME.KakaoPay }
+]
+
 export enum PROCESS_STATUS_TYPE {
   COMPLETED = 'completed',
   CANCEL = 'cancel',
@@ -71,7 +77,7 @@ export enum STATUS_TYPE {
 
 export enum STATUS_ENDPOINT {
   ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  INACTIVE = 'inactive'
 }
 
 export type TYPE_STATUS_ACCOUNT = 'active' | 'inactive' | 'pending' | 'banned' | 'deleted'

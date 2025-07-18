@@ -84,7 +84,7 @@ export const LoginForm = () => {
   }
 
   return (
-    <div className='w-full max-w-md rounded-lg bg-background p-8 shadow'>
+    <div className='w-full max-w-md rounded-lg bg-surface p-8 shadow'>
       <div className='mb-8 flex flex-col items-center'>
         <img src='/images/logo.png' alt='Logo' className='mb-4 w-20' />
         <TypingText text='Welcome to One Tether Pay!' inViewOnce={true} className='text-xl font-bold' />

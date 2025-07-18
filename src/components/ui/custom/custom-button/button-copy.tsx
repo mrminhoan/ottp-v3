@@ -6,11 +6,13 @@ interface Btn06Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textToCopy: string
   successDuration?: number
   classNameContent?: string
+  classNameButton?: string
 }
 
 export default function CustomButtonCopy({
   className,
   classNameContent,
+  classNameButton,
   textToCopy = '',
   successDuration = 1000,
   children,
@@ -29,7 +31,10 @@ export default function CustomButtonCopy({
   }
 
   return (
-    <div className='flex items-center gap-2 justify-center cursor-pointer text-xs' onClick={handleCopy}>
+    <div
+      className={cn('flex items-center gap-2 justify-center cursor-pointer text-xs', classNameButton)}
+      onClick={handleCopy}
+    >
       <span className={cn('max-w-[10rem] truncate', classNameContent)}>{children}</span>
 
       <div className={cn('transition-transform duration-200', isCopied && 'scale-105')}>

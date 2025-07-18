@@ -24,16 +24,25 @@ const UserListLoadCore = LoadedAleCore(() => import('@/pages/users/list/user-lis
 // const UserTransactionLoadCore = LoadedAleCore(() => import('@/pages/users/transaction/user-transaction'))
 const UserDepositLoadCore = LoadedAleCore(() => import('@/pages/users/deposit/deposit'))
 
+// Logs
+const TransferLogLoadCore = LoadedAleCore(() => import('@/pages/_logs/transfer_log/transfer-log'))
+
 // External
 const ExternalPageLoadCore = LoadedAleCore(() => import('@/pages/external/external-page'))
+
 // Shop
 const ExternalShopPage = LoadedAleCore(() => import('@/pages/external/shop/external-shop-page'))
 const ShopBasicInfoLoadCore = LoadedAleCore(() => import('@/pages/external/shop/basic-info/basic-info'))
+
+// Seller
+const ExternalSellerPage = LoadedAleCore(() => import('@/pages/external/seller/external-seller-page'))
+const SellerBasicInfoLoadCore = LoadedAleCore(() => import('@/pages/external/seller/basic-info/basic-info'))
 
 // Common
 const LoginLoadCore = LoadedAleCore(() => import('@/pages/login/login'))
 const NotFoundLoadCore = LoadedAleCore(() => import('@/pages/common/not-found'))
 const ErrorPageLoadCore = LoadedAleCore(() => import('@/pages/common/error'))
+const ComingSoonLoadCore = LoadedAleCore(() => import('@/pages/common/comming-soon'))
 
 const routes: Partial<TMenu>[] = [
   {
@@ -124,6 +133,22 @@ const routes: Partial<TMenu>[] = [
           }
         ]
       },
+      {
+        path: PATHS.LOGS.ROOT,
+        meta: { title: 'Logs', icon: ScrollText },
+        children: [
+          {
+            path: '',
+            to: PATHS.LOGS.TRANSFER,
+            element: <GuardProtectRoute component={<TransferLogLoadCore />} />
+          },
+          {
+            path: PATHS.LOGS.TRANSFER,
+            element: <GuardProtectRoute component={<TransferLogLoadCore />} />,
+            meta: { title: 'Transaction Logs' }
+          }
+        ]
+      },
 
       {
         path: '*',
@@ -157,27 +182,46 @@ const routes: Partial<TMenu>[] = [
           },
           {
             path: PATHS.EXTERNAL.SHOP.USERS,
-            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+            element: <GuardProtectRoute component={<ComingSoonLoadCore />} />,
             meta: { title: 'Users', icon: Users }
           },
           {
             path: PATHS.EXTERNAL.SHOP.LOG.ROOT,
-            to: PATHS.EXTERNAL.SHOP.LOG.SHOP_TRANSACTION,
-            element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
             meta: { title: 'Log', icon: ScrollText },
             children: [
               {
                 path: '',
                 to: PATHS.EXTERNAL.SHOP.LOG.SHOP_TRANSACTION,
-                element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+                element: <GuardProtectRoute component={<ComingSoonLoadCore />} />,
                 meta: { title: 'Shop Transaction' }
               },
               {
                 path: PATHS.EXTERNAL.SHOP.LOG.USER_TRANSACTION,
-                element: <GuardProtectRoute component={<ShopBasicInfoLoadCore />} />,
+                element: <GuardProtectRoute component={<ComingSoonLoadCore />} />,
                 meta: { title: 'User Transaction' }
               }
             ]
+          }
+        ]
+      },
+      {
+        path: PATHS.EXTERNAL.SELLER.ROOT,
+        element: <GuardProtectRoute component={<ExternalSellerPage />} />,
+        children: [
+          {
+            path: '',
+            to: PATHS.EXTERNAL.SELLER.BASIC_INFO,
+            element: <GuardProtectRoute component={<SellerBasicInfoLoadCore />} />
+          },
+          {
+            path: PATHS.EXTERNAL.SELLER.BASIC_INFO,
+            element: <GuardProtectRoute component={<SellerBasicInfoLoadCore />} />,
+            meta: { title: 'Seller Basic Info', icon: Users }
+          },
+          {
+            path: PATHS.EXTERNAL.SELLER.USERS,
+            element: <GuardProtectRoute component={<ComingSoonLoadCore />} />,
+            meta: { title: 'Users', icon: Users }
           }
         ]
       }

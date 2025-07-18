@@ -12,7 +12,7 @@ import { OpacityAnimation } from '@/components/ui/custom/custom-frammer-motion'
 import { LoadingOverlay } from '@/components/ui/custom/custom-loading'
 import DataTable from '@/components/ui/custom/custom-table/data-table/data-table'
 import { Separator } from '@/components/ui/separator'
-import { API, SYMBOL_CURRENCY } from '@/constants'
+import { API, PATHS, SYMBOL_CURRENCY } from '@/constants'
 import { CustomFormatNumber } from '@/lib/lib-format-number'
 import { SellerModel, SellerSearchModel } from '@/models/class/seller/seller.model'
 import { SellerService } from '@/service/pages/seller/seller.service'
@@ -23,6 +23,7 @@ import { useCustomQuery } from '@/tanstack-query/use-custom-query'
 import { ColumnDef } from '@tanstack/react-table'
 import { BoltIcon, ChevronDownIcon } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import FilterBox from './filter/filter'
 
 function SellerList() {
   const [paramSearch, setParamSearch] = useState<SellerSearchModel>(new SellerSearchModel())
@@ -42,8 +43,6 @@ function SellerList() {
       ...prev
     }))
   }
-
-  console.log(sellerList?.data?.data)
 
   const columns = useMemo<ColumnDef<SellerModel>[]>(
     () => [
@@ -94,13 +93,13 @@ function SellerList() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                // onClick={() => {
-                //   window.open(
-                //     `${PATHS.EXTERNAL.SHOP.BASIC_INFO}?id=${data?.id}`,
-                //     'shop-detail',
-                //     'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
-                //   )
-                // }}
+                  onClick={() => {
+                    window.open(
+                      `${PATHS.EXTERNAL.SELLER.BASIC_INFO}?id=${data?.id}`,
+                      'seller-detail'
+                      // 'width=1024,height=768,resizable=yes,scrollbars=yes,noopener=true,noreferrer=true'
+                    )
+                  }}
                 >
                   <BoltIcon size={16} className='opacity-60' aria-hidden='true' />
                   <span>Settings</span>
@@ -229,9 +228,10 @@ function SellerList() {
     []
   )
   return (
-    <Box title='Seller List'>
+    <LoadingOverlay isLoading={isFetching}>
       <OpacityAnimation>
-        <LoadingOverlay isLoading={isFetching}>
+        <Box title='Seller List'>
+          <FilterBox  className='mb-4' />
           <DataTable
             columns={columns}
             data={sellerList?.data?.data}
@@ -242,9 +242,9 @@ function SellerList() {
             getRowCanExpand={() => true}
             loading={isFetching}
           />
-        </LoadingOverlay>
+        </Box>
       </OpacityAnimation>
-    </Box>
+    </LoadingOverlay>
   )
 }
 

@@ -219,12 +219,10 @@ export const SelectSearchTrigger = React.forwardRef<
       <Button
         ref={ref}
         onClick={onTogglePopover}
-        variant='outline'
         type='button'
         disabled={disabled}
         className={cn(
-          'flex  w-full min-h-9 max-h-[36px] items-center justify-between  py-[4px] px-0 [&_svg]:pointer-events-auto ',
-          'hover:bg-background border border-border rounded-sm ',
+          'flex bg-background  w-full min-h-9 max-h-[36px] items-center justify-between  px-0 [&_svg]:pointer-events-auto  rounded-lg border border-border',
           disabled && '[&_svg]:pointer-events-none',
           'shrink-1',
           className

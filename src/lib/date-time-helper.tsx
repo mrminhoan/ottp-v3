@@ -2,10 +2,12 @@ import { FORMAT_DATE } from '@/constants/format-date'
 import dayjs, { Dayjs, ManipulateType } from 'dayjs'
 import tz from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
+import duration from 'dayjs/plugin/duration'
 
 type TDate = Date | Dayjs | string
 dayjs.extend(utc)
 dayjs.extend(tz)
+dayjs.extend(duration)
 
 const wrapperInValidTime = (cb: Function) => {
   try {
@@ -74,6 +76,37 @@ const getTodayWithUtcOffsetFormatted = (format = FORMAT_DATE.YYYY_MM_DD_HH_mm): 
 const getOneWeekAgoWithUtcOffsetFormatted = (format = FORMAT_DATE.YYYY_MM_DD_HH_mm): string => {
   return getOneWeekAgoWithUtcOffset().format(format)
 }
+
+function truncateMicroseconds(isoString) {
+  // Cắt phần microseconds thành milliseconds (3 chữ số)
+  return isoString.replace(/\.(\d{3})\d{0,3}/, '.$1')
+}
+
+function timeDifference(t1, t2) {
+  const time1 = dayjs(truncateMicroseconds(t1))
+  const time2 = dayjs(truncateMicroseconds(t2))
+
+  const diffMs = Math.abs(time1.diff(time2)) // difference in milliseconds
+
+  const dur = dayjs.duration(diffMs)
+
+  return {
+    milliseconds: diffMs,
+    seconds: dur.asSeconds(),
+    minutes: dur.asMinutes(),
+    hours: dur.asHours(),
+    days: dur.asDays(),
+    formatted: `${dur.days()}d ${dur.hours()}h ${dur.minutes() % 60}m ${dur.seconds() % 60}s`
+  }
+}
+
+function diffMinutes(t1, t2) {
+  const time1 = dayjs(truncateMicroseconds(t1))
+  const time2 = dayjs(truncateMicroseconds(t2))
+  const diff = Math.abs(time1.diff(time2, 'minute', true))
+  return Math.round(diff)
+}
+
 export const DateTimeHelper = {
   convertISOToFormat,
   covertStringToDayjs,
@@ -82,5 +115,7 @@ export const DateTimeHelper = {
   getTodayWithUtcOffset,
   getOneWeekAgoWithUtcOffset,
   getTodayWithUtcOffsetFormatted,
-  getOneWeekAgoWithUtcOffsetFormatted
+  getOneWeekAgoWithUtcOffsetFormatted,
+  timeDifference,
+  diffMinutes
 }

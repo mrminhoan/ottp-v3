@@ -51,14 +51,14 @@ export const WrapperConfig = async (props: IProps) => {
       <StrictMode>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-            <BrowserRouter>
-              <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
-                <DialogProvider>
+            <DialogProvider>
+              <BrowserRouter>
+                <AppConfigProvider defaultTheme='light' defaultUtcOffset='+9'>
                   <SidebarWrapper>{children}</SidebarWrapper>
                   <Toaster />
-                </DialogProvider>
-              </AppConfigProvider>
-            </BrowserRouter>
+                </AppConfigProvider>
+              </BrowserRouter>
+            </DialogProvider>
           </ThemeProvider>
         </QueryClientProvider>
       </StrictMode>

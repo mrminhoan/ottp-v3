@@ -42,7 +42,7 @@ function LanguageMenu(props: IProps) {
         ),
         value: key
       }))}
-      className={cn('flex items-center gap-2 bg-backgrounds w-full', className)}
+      className={cn('flex items-center gap-2 bg-background w-full', className)}
       classNameContent={'min-w-[11rem]'}
       onChange={(e) => console.log(e)}
     />

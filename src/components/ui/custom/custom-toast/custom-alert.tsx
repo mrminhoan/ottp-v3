@@ -1,8 +1,9 @@
 'use client'
 
-import { CheckCircle2, XCircle, AlertTriangle, Info } from 'lucide-react'
+import { CheckCircle2, XCircle, AlertTriangle, Info, PartyPopper } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { Alert } from '../../alert'
 
 type AlertProps = {
   title?: string
@@ -35,13 +36,21 @@ function AlertBase({
       className={cn('w-full max-w-sm mx-auto rounded-lg', className)}
     >
       <div className={cn('relative border p-4 shadow-sm', bgClass, borderClass)}>
-        <div className='flex items-start gap-3'>
+        <div className='flex items-center gap-3'>
           <motion.div
-            initial={{ scale: 0.5 }}
-            animate={{ scale: 1 }}
+            initial={{ scale: 0.5, opacity: 0, rotate: -20 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
-            <div className={cn('rounded-full p-1', iconBgClass)}>{icon}</div>
+            <div className={cn('rounded-full p-1', iconBgClass)}>
+              <motion.span
+                initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.05, type: 'spring', stiffness: 200, damping: 15 }}
+              >
+                {icon}
+              </motion.span>
+            </div>
           </motion.div>
 
           <div className='flex flex-col gap-0.5'>
@@ -141,5 +150,88 @@ export function AlertInfo({ title, message }: { title?: string; message: string 
       iconBgClass='bg-[#93c5fd]'
       gradientColor='blue-100/20'
     />
+  )
+}
+
+export default function AlertNotiDeposit({ className }: { className?: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={cn('w-full max-w-xl mx-auto', className)}
+    >
+      <Alert
+        className={cn(
+          'relative overflow-hidden',
+          'bg-gradient-to-b from-primary/5 to-background',
+          'border border-primary/20',
+          'shadow-[0_1px_6px_0_rgba(114,227,173,0.08)]',
+          'rounded-xl p-4',
+          className
+        )}
+      >
+        <div className='flex items-center gap-4'>
+          <motion.div
+            initial={{ rotate: -15, scale: 0.5 }}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 20
+            }}
+          >
+            <div className='p-2.5 rounded-xl bg-success-gradient'>
+              <PartyPopper className='h-5 w-5 text-white' />
+            </div>
+          </motion.div>
+          <div className='space-y-1'>
+            <motion.h3
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className='font-medium text-primary-foreground'
+            >
+              Amazing milestone! 🎉
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className='text-sm text-muted-foreground'
+            >
+              You&apos;ve just hit 1,000 followers on your journey!
+            </motion.p>
+          </div>
+        </div>
+        {/* Confetti effect */}
+        <div className='absolute inset-0 pointer-events-none'>
+          <div className='absolute -left-2 -top-2 h-16 w-16 rounded-full bg-primary/20 blur-2xl opacity-30' />
+          <div className='absolute top-2 right-8 h-12 w-12 rounded-full bg-success/20 blur-2xl opacity-30' />
+          <div className='absolute -right-2 -bottom-2 h-16 w-16 rounded-full bg-primary/15 blur-2xl opacity-25' />
+        </div>
+        {/* Celebration badge */}
+        <div className='absolute top-4 right-4'>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 20,
+              delay: 0.3
+            }}
+            className={cn(
+              'text-[11px] font-medium',
+              'px-2.5 py-0.5 rounded-full',
+              'bg-primary/10',
+              'text-primary-foreground',
+              'ring-1 ring-primary/20'
+            )}
+          >
+            Milestone
+          </motion.div>
+        </div>
+      </Alert>
+    </motion.div>
   )
 }

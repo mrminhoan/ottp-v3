@@ -8,6 +8,7 @@ import { ShopService } from '@/service/pages/shop/shop.service'
 import { useCustomQuery } from '@/tanstack-query/use-custom-query'
 import { Outlet, useSearchParams } from 'react-router-dom'
 import { RenderUserInfo } from './render-user-info'
+import { ExternalShopHeader } from '@/components/ui/layout/header/external-shop-header'
 
 export default function ExternalShopPage() {
   const [searchParams] = useSearchParams()
@@ -38,6 +39,7 @@ export default function ExternalShopPage() {
       <SubSidebar routes={routes[1]['children'][0]} userInfo={UserInfo} />
       <SidebarInset className='overflow-hidden '>
         <div className='container'>
+          <ExternalShopHeader />
           <Outlet />
         </div>
       </SidebarInset>

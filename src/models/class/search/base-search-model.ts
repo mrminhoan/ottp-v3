@@ -13,5 +13,5 @@ export class BaseSearchModel {
   sortType: TOrderType = SORT_TYPE.ASC
   keySort: string = null
   page: number = 1
-  search: string = ''
+  search: string | null = null
 }

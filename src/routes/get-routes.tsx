@@ -1,13 +1,17 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { TMenu } from '@/models/types'
-
 
 export const renderRouter = (paths: Partial<TMenu>[]) => {
   const ItemRoute = (item: Partial<TMenu>, index: number) => {
+    const location = useLocation()
+
     const { path, element, children, to } = item
 
     if (to) {
-      return <Route path={path} element={<Navigate to={to} replace />} key={index} />
+      const search = location.search
+      const finalTo = `${to}${search}`
+      
+      return <Route path={path} element={<Navigate to={finalTo} replace />} key={index} />
     }
 
     return (

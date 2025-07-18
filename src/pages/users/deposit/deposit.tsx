@@ -18,7 +18,7 @@ import { Separator } from '@/components/ui/separator'
 import { API, BANK_TYPE_NAME, PROCESS_STATUS_TYPE, STATUS_TRANSACTION, SYMBOL_CURRENCY } from '@/constants'
 import { CustomFormatNumber } from '@/lib/lib-format-number'
 import { TransactionModel, TransactionSearchModel } from '@/models/class/transaction/transaction.model'
-import { TransactionService } from '@/service/pages/member/member.service'
+import { TransactionService } from '@/service/pages/transaction/transaction.service'
 import { CustomDateTime } from '@/shared/components/custom-date-time'
 import { KeyValueComp } from '@/shared/components/key-value'
 import CardBank from '@/shared/components/payment-cards/card-bank'
@@ -386,6 +386,8 @@ export default function Deposit() {
               <KeyValueComp title='Register' classNameKey='min-w-[5rem]'>
                 <CustomDateTime date={row.original.created_at} className='text-xs font-bold' />
               </KeyValueComp>
+
+              <Separator />
 
               {row.original.status_order === STATUS_TRANSACTION['pending'] && (
                 <KeyValueComp title='Expiry' classNameKey='min-w-[5rem]'>

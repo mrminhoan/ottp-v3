@@ -1,6 +1,6 @@
 // lib/alertService.ts
 import { toast } from 'sonner'
-import { AlertInfo, AlertError, AlertSuccess, AlertWarning } from './custom-alert'
+import AlertNotiDeposit, { AlertInfo, AlertError, AlertSuccess, AlertWarning } from './custom-alert'
 
 export const alertService = {
   success: ({ message, title }: { message: string; title?: string }) =>
@@ -28,6 +28,13 @@ export const alertService = {
     toast.custom((t) => (
       <div onClick={() => toast.dismiss(t)} className='cursor-pointer'>
         <AlertWarning message={message} title={title} />
+      </div>
+    )),
+
+  notiDeposit: () =>
+    toast.custom((t) => (
+      <div onClick={() => toast.dismiss(t)} className='cursor-pointer'>
+        <AlertNotiDeposit />
       </div>
     ))
 }

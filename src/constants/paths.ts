@@ -31,6 +31,23 @@ export const PATHS = {
         SHOP_TRANSACTION: '/external/shop/log/shop-transaction',
         USER_TRANSACTION: '/external/shop/log/user-transaction'
       }
+    },
+    SELLER: {
+      ROOT: '/external/seller',
+      BASIC_INFO: '/external/seller/basic-info',
+      USERS: '/external/seller/users',
+      LOG: {
+        ROOT: '/external/seller/log',
+        SHOP_TRANSACTION: '/external/seller/log/shop-transaction',
+        USER_TRANSACTION: '/external/seller/log/user-transaction'
+      }
     }
+  },
+  LOGS: {
+    ROOT: '/logs',
+    TRON_GRID: '/logs/tron-grid',
+    SYSTEM: '/logs/system',
+    AGENT_ACTIONS: '/logs/agent-actions',
+    TRANSFER: '/logs/transfer'
   }
 }

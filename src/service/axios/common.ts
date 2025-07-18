@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { omit } from 'lodash'
-// import socketService from '../socket/socket.service'
 import { forceLogout } from '@/lib/force-logout'
 import { IApiRequest } from '@/models/interface/api-request-model'
 import { IResponse } from '@/models/interface/api-response-model'
@@ -163,7 +162,7 @@ axiosInstance.interceptors.response.use(
 
             const accessToken = res?.data?.data?.access_token
 
-            socketService.connect(SOCKET_ID.NOTIFICATION, accessToken, import.meta.env.VITE_SOCKET_URL)
+            socketService.connect(SOCKET_ID.NOTIFICATION, accessToken, import.meta.env.VITE_WS_URL)
 
             isRetry = false
             onAccessTokenFetched(accessToken)
@@ -173,9 +172,9 @@ axiosInstance.interceptors.response.use(
             return axiosInstance({ ...config })
           } catch (error) {
             isRetry = false
-            setTimeout(() => {
-              forceLogout()
-            }, 1000)
+            // setTimeout(() => {
+            //   forceLogout()
+            // }, 1000)
             console.log('Invalid access. Please login again.', error)
             throw new Error('Invalid access. Please login again.')
           }

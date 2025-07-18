@@ -48,7 +48,7 @@ export class SellerModel extends BaseModel {
 }
 
 export class SellerSearchModel extends BaseSearchModel {
-  payment_type: string | null = null
+  payment_type: number[] | null = null
   min_tether: number = 0
   max_tether: number = 0
 }

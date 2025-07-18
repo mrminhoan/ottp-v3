@@ -61,7 +61,7 @@
   --disabled: #a3a0a0;
 
   --success-gradient: linear-gradient(to right, #b2e9cf, #8ddfbb);
-  --error-gradient: linear-gradient(to right, #f6a9a3, #ee8d87);
+  --error-gradient: linear-gradient(to right, #ff8a65, #e74c3c 80%);
   --info-gradient: linear-gradient(to right, #8bbcff, #66aaff);
   --warning-gradient: linear-gradient(to right, #ffdf80, #ffd24d);
 
@@ -193,4 +193,26 @@ body {
   padding: 0 !important; */
   border-radius: 0.5rem !important;
   overflow: hidden !important;
+}
+
+/* Shiki CSS Variables Override */
+pre[class*="shiki"] {
+  --shiki-light-bg: transparent !important;
+  --shiki-dark-bg: transparent !important;
+  background: transparent !important;
+  text-align: left !important;
+}
+
+/* Override background colors but keep syntax highlighting */
+.shiki,
+.shiki span {
+  background-color: transparent !important;
+  text-align: left !important;
+}
+
+/* Ensure all shiki elements have transparent background and left alignment */
+.shiki .line {
+  background-color: transparent !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
 }

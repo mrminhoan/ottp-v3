@@ -1,7 +1,6 @@
-// import { UserIdentity } from '@/service/axios/pages/user/user-identity'
+import { UserStore } from '@/service/pages/users/store'
 
 export const forceLogout = () => {
-  // UserIdentity.clearCredential()
+  UserStore.clearCredential()
   window.location.href = '/login'
-  window.location.reload()
 }
