@@ -4,7 +4,9 @@ import { CheckCircle2, XCircle, AlertTriangle, Info, PartyPopper } from 'lucide-
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Alert } from '../../alert'
-
+import { CustomFormatMoneyTether, CustomFormatNumber } from '@/lib/lib-format-number'
+import { SYMBOL_CURRENCY } from '@/constants/common'
+import IcTether from '@/assets/icons/tether.svg'
 type AlertProps = {
   title?: string
   message: string
@@ -153,7 +155,16 @@ export function AlertInfo({ title, message }: { title?: string; message: string 
   )
 }
 
-export default function AlertNotiDeposit({ className }: { className?: string }) {
+interface dataNotiMessage {
+  message: string
+  tether: number
+  amount: number
+  username: string
+  txn_hash: string
+  expiry_time: string
+}
+
+export default function AlertNotiDeposit({ className, data }: { className?: string; data: dataNotiMessage }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -8 }}
@@ -180,8 +191,8 @@ export default function AlertNotiDeposit({ className }: { className?: string }) 
               damping: 20
             }}
           >
-            <div className='p-2.5 rounded-xl bg-success-gradient'>
-              <PartyPopper className='h-5 w-5 text-white' />
+            <div className='p-1 rounded-xl bg-success-gradient'>
+              <img src={IcTether} alt='deposit' className='w-6 h-6' />
             </div>
           </motion.div>
           <div className='space-y-1'>
@@ -191,7 +202,7 @@ export default function AlertNotiDeposit({ className }: { className?: string }) 
               transition={{ delay: 0.1 }}
               className='font-medium text-primary-foreground'
             >
-              Amazing milestone! 🎉
+              Notification 🎉
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, x: 20 }}
@@ -199,17 +210,15 @@ export default function AlertNotiDeposit({ className }: { className?: string }) 
               transition={{ delay: 0.2 }}
               className='text-sm text-muted-foreground'
             >
-              You&apos;ve just hit 1,000 followers on your journey!
+              Deposit Notification
             </motion.p>
           </div>
         </div>
-        {/* Confetti effect */}
-        <div className='absolute inset-0 pointer-events-none'>
+        {/* <div className='absolute inset-0 pointer-events-none'>
           <div className='absolute -left-2 -top-2 h-16 w-16 rounded-full bg-primary/20 blur-2xl opacity-30' />
           <div className='absolute top-2 right-8 h-12 w-12 rounded-full bg-success/20 blur-2xl opacity-30' />
           <div className='absolute -right-2 -bottom-2 h-16 w-16 rounded-full bg-primary/15 blur-2xl opacity-25' />
         </div>
-        {/* Celebration badge */}
         <div className='absolute top-4 right-4'>
           <motion.div
             initial={{ scale: 0 }}
@@ -230,8 +239,27 @@ export default function AlertNotiDeposit({ className }: { className?: string }) 
           >
             Milestone
           </motion.div>
-        </div>
+        </div> */}
       </Alert>
     </motion.div>
+  )
+}
+
+// Hàm tạo message thông báo user thực hiện deposit
+export function getDepositMessage({ username, tether, amount }: { username: string; tether: number; amount: number }) {
+  return (
+    <div className="leading-relaxed">
+      <span>User </span>
+      <span className="font-semibold text-primary">{username}</span>
+      <span> has deposited </span>
+      <span className="font-semibold text-emerald-600">
+        <CustomFormatNumber value={amount} prefix={SYMBOL_CURRENCY.MAIN} />
+      </span>
+      <span> with </span>
+      <span className="font-semibold text-orange-600">
+        <CustomFormatNumber value={tether} prefix={SYMBOL_CURRENCY.TETHER} />
+      </span>
+      <span> tether</span>
+    </div>
   )
 }

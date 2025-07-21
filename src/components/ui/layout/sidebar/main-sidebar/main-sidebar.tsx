@@ -6,7 +6,6 @@ import {
   SidebarTrigger,
   useSidebar
 } from '@/components/ui/sidebar'
-import { Popover, PopoverButton, PopoverPanel } from '@/components/animate-ui/headless/popover'
 import { TMenu } from '@/models/types'
 import { RenderSidebar } from '../render-sidebar'
 import { ImageCdn } from '@/components/ui/custom/custom-image/image-cdn'
@@ -14,12 +13,7 @@ import { Avatar } from '@/components/ui/custom/custom-avatar/avatar'
 import avatar from '@/assets/icons/avatar2.jpg'
 import { useShopStore } from '@/store'
 import { ModeToggle } from '@/components/ui/mode-toggle'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/animate-ui/radix/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/animate-ui/radix/dropdown-menu'
 import { ChevronDownIcon, LogOut } from 'lucide-react'
 import SelectTimezone from '@/shared/components/selects/select-time-zome'
 import LanguageMenu from '@/shared/components/selects/select-language'
@@ -27,9 +21,8 @@ import { useState } from 'react'
 import { Separator } from '@/components/ui/separator'
 import { Spinner } from '@/components/ui/spinner'
 import { CustomButton } from '@/components/ui/custom/custom-button/button'
-import { forceLogout } from '@/lib/force-logout'
-import { ActionButton } from '@/components/ui/custom/custom-button/action-button'
 import { alertService } from '@/components/ui/custom/custom-toast/alert.service'
+import { forceLogout } from '@/lib/force-logout'
 
 interface IProps {
   routes: Partial<TMenu>
@@ -75,19 +68,15 @@ function MainSidebar(props: IProps) {
               <SelectTimezone />
               <LanguageMenu className='bg-background' isShowLabel={true} />
               <ModeToggle />
+              <CustomButton variant='destructive' size='sm' onClick={() => forceLogout()} className='w-full'>
+                <div className='flex items-center gap-2'>
+                  <LogOut className='w-4 h-4' />
+                  Logout
+                </div>
+              </CustomButton>
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-
-        <CustomButton
-          variant='destructive'
-          size='sm'
-          onClick={() => alertService.notiDeposit()}
-          className='w-full'
-        >
-          <LogOut className='w-4 h-4' />
-          Logout
-        </CustomButton>
       </SidebarHeader>
 
       <Separator className='mb-5' />

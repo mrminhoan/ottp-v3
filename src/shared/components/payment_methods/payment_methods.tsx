@@ -7,21 +7,21 @@ interface BadgePaymentProps {
   bank_type_id: BANK_TYPE
 }
 
-// Base style for all badges
-const baseClass = 'w-[3rem] h-8 rounded-md flex items-center justify-center shadow-md'
+// Base style for all badges - fixed dimensions ensuring same height
+const baseClass = 'w-12 min-h-[32px] h-8 rounded-md flex items-center justify-center shadow-md'
 
 export const KakaoBadge = () => {
   return (
     <div className={`bg-kakao-gradient ${baseClass}`}>
-      <img src={IcKakaoPay} alt='kakao' className='w-8 h-8' />
+      <img src={IcKakaoPay} alt='kakao' className='w-6 h-6 object-contain' />
     </div>
   )
 }
 
 export const PaypalBadge = () => {
   return (
-    <div className={`bg-white border border-border ${baseClass}`}>
-      <img src={IcPaypal} alt='paypal' className='w-8 h-8' />
+    <div className={`bg-white ${baseClass}`} style={{ border: '1px solid hsl(var(--border))', boxSizing: 'border-box' }}>
+      <img src={IcPaypal} alt='paypal' className='w-6 h-6 object-contain' />
     </div>
   )
 }

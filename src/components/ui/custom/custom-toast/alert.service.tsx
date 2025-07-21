@@ -31,10 +31,17 @@ export const alertService = {
       </div>
     )),
 
-  notiDeposit: () =>
-    toast.custom((t) => (
-      <div onClick={() => toast.dismiss(t)} className='cursor-pointer'>
-        <AlertNotiDeposit />
+  notiDeposit: (data: any) => {
+    return toast.custom((t) => (
+      <div
+        onClick={() => {
+          toast.dismiss(t)
+          window.location.href = '/users/deposit'
+        }}
+        className='cursor-pointer'
+      >
+        <AlertNotiDeposit data={data} />
       </div>
     ))
+  }
 }

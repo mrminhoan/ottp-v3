@@ -6,27 +6,27 @@ import { SOCKET_ID } from '@/constants/socket'
 // Interface cho notification message
 interface NotificationRequest {
   message: string
-  title?: string
-  type?: 'success' | 'error' | 'info' | 'warning'
+  tether: number
+  amount: number
+  username: string
+  txn_hash: string
+  expiry_time: string
 }
 
 export const useNotificationSocket = () => {
   useEffect(() => {
     const handleNotificationRequest = (data: NotificationRequest) => {
-      console.log('📨 Received notification_request:', data)
-
-      const { message, title, type = 'info' } = data
-
-      // Play notification sound
       try {
         const audio = new Audio('/sounds/1.mp3')
         audio.volume = 0.5
         audio.play().catch(console.warn)
+        alertService.notiDeposit(data)
       } catch (error) {
-        console.warn('⚠️ Could not play notification sound:', error)
+        alertService.error({
+          message: 'Deposit notification failed',
+          title: 'Error'
+        })
       }
-
-      alertService.info({ message, title })
     }
 
     socketService.on(SOCKET_ID.NOTIFICATION, 'notification_request', handleNotificationRequest)
